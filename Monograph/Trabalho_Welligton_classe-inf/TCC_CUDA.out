@@ -1,0 +1,47 @@
+\BOOKMARK [0][-]{pretexto.0}{Elementos Pr\351-Textuais}{}% 1
+\BOOKMARK [1][-]{pretexto.1.1}{Capa}{pretexto.0}% 2
+\BOOKMARK [1][-]{pretexto.2.1}{Publica\347\343o}{pretexto.0}% 3
+\BOOKMARK [1][-]{pretexto.3.1}{Folha de Rosto}{pretexto.0}% 4
+\BOOKMARK [1][-]{pretexto.6.1}{Dedicat\363ria}{pretexto.0}% 5
+\BOOKMARK [1][-]{pretexto.7.1}{Agradecimentos}{pretexto.0}% 6
+\BOOKMARK [1][-]{pretexto.10.1}{Ep\355grafe}{pretexto.0}% 7
+\BOOKMARK [1][-]{pretexto.8.1}{Resumo}{pretexto.0}% 8
+\BOOKMARK [1][-]{pretexto.9.1}{Abstract}{pretexto.0}% 9
+\BOOKMARK [0][-]{sumario.0}{Sum\341rio}{}% 10
+\BOOKMARK [0][-]{Doc-Start}{Lista de Figuras}{}% 11
+\BOOKMARK [0][-]{Doc-Start}{Lista de Tabelas}{}% 12
+\BOOKMARK [0][-]{Doc-Start}{Lista de Algoritmos}{}% 13
+\BOOKMARK [0][-]{section*.1}{Lista de C\363digos de Programas}{}% 14
+\BOOKMARK [0][-]{chapter.2}{1 Introdu\347\343o}{}% 15
+\BOOKMARK [0][-]{chapter.3}{2 Filogenia}{}% 16
+\BOOKMARK [1][-]{section.4}{2.1 M\351todo de Compara\347\343o Filogen\351tico}{chapter.3}% 17
+\BOOKMARK [1][-]{section.7}{2.2 Dados Utilizados}{chapter.3}% 18
+\BOOKMARK [2][-]{subsection.8}{2.2.1 \301rvore Filogen\351tica}{section.7}% 19
+\BOOKMARK [2][-]{subsection.10}{2.2.2 Formato Newick}{section.7}% 20
+\BOOKMARK [1][-]{section.12}{2.3 Coeficiente I de Moran}{chapter.3}% 21
+\BOOKMARK [0][-]{chapter.14}{3 Computa\347\343o Paralela}{}% 22
+\BOOKMARK [1][-]{section.15}{3.1 Vis\343o Geral}{chapter.14}% 23
+\BOOKMARK [2][-]{subsection.16}{3.1.1 Paralelismo}{section.15}% 24
+\BOOKMARK [2][-]{subsection.18}{3.1.2 Taxonomia de Flynn}{section.15}% 25
+\BOOKMARK [2][-]{subsection.23}{3.1.3 Arquiteturas de computa\347\343o paralela}{section.15}% 26
+\BOOKMARK [2][-]{subsection.28}{3.1.4 Arquitetura heterog\352nea}{section.15}% 27
+\BOOKMARK [2][-]{subsection.29}{3.1.5 CPU x GPU}{section.15}% 28
+\BOOKMARK [2][-]{subsection.30}{3.1.6 M\351tricas de desempenho}{section.15}% 29
+\BOOKMARK [3][-]{section*.31}{Efici\352ncia}{subsection.30}% 30
+\BOOKMARK [3][-]{section*.32}{Acelera\347\343o\(speedup\)}{subsection.30}% 31
+\BOOKMARK [3][-]{section*.33}{Custo}{subsection.30}% 32
+\BOOKMARK [3][-]{section*.34}{Granularidade}{subsection.30}% 33
+\BOOKMARK [3][-]{section*.35}{Escalabilidade}{subsection.30}% 34
+\BOOKMARK [1][-]{section.36}{3.2 Ambientes de programa\347\343o}{chapter.14}% 35
+\BOOKMARK [2][-]{subsection.37}{3.2.1 CUDA}{section.36}% 36
+\BOOKMARK [2][-]{subsection.38}{3.2.2 Estrutura de um programa em CUDA}{section.36}% 37
+\BOOKMARK [2][-]{subsection.39}{3.2.3 Desafios Programa\347\343o em CUDA C}{section.36}% 38
+\BOOKMARK [0][-]{chapter.40}{4 Proposta de Implementa\347\343o}{}% 39
+\BOOKMARK [1][-]{section.41}{4.1 Pr\351-processamento}{chapter.40}% 40
+\BOOKMARK [1][-]{section.44}{4.2 Inser\347\343o de esp\351cies}{chapter.40}% 41
+\BOOKMARK [1][-]{section.45}{4.3 C\341lculo de matriz de dist\342ncia}{chapter.40}% 42
+\BOOKMARK [1][-]{section.46}{4.4 C\341lculo de I de Moran}{chapter.40}% 43
+\BOOKMARK [0][-]{chapter.54}{5 Resultados}{}% 44
+\BOOKMARK [1][-]{section.55}{5.1 C\341lculo de I de Moran}{chapter.54}% 45
+\BOOKMARK [0][-]{chapter.64}{6 Conclus\343o}{}% 46
+\BOOKMARK [0][-]{chapter.64}{Refer\352ncias Bibliogr\341ficas}{}% 47

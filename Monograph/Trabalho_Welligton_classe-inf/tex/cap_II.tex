@@ -1,0 +1,286 @@
+\chapter{Computação Paralela}
+\label{cap:paralelo}
+
+%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+\section{Visão Geral}
+\label{cap:visao}
+Tradicionalmente, software tem sido escrito para uma computação serial, ou em outras palavras, a execução é feita de forma sequencial. Nessa linha de pensamento, temos que o problema é quebrado em uma série de instruções, as quais são executadas sequencialmente, uma após a outra. Tais instruções são executas em um único processador, e embora não conseguimos perceber, devido a velocidade de processamento, apenas uma única instrução é executada naquele exato momento. \cite{BlaiseLab}
+
+No decorrer dos anos, o computador tem passado por modificações e atualizações constantes, principalmente no que diz respeito a velocidade de processamento. Saímos de uma capacidade de processamento de CPU que girava em torno de 0,05 GHz em 1991 para notáveis 32 GHz em 2011. \cite{HistCPU} Um crescimento que já chegou a ser mais de 60\% ao ano, variando bastante na maioria das vezes entre 20\% a 40\%. 
+
+Atualmente, atividades recentes dos principais fabricantes de chips, como a NVIDIA, nos faz acreditar ainda mais que projetos futuros de microprocessadores e grandes sistemas HPC serão híbridos / heterogêneos por natureza. Tais sistemas heterogêneos dependerão fortemente da integração de dois tipos principais de componentes em proporções variáveis: \cite{CUDA_Example} 
+\begin{itemize}
+   \item Multi-Core e Many-Core CPU: Certamente, o número de núcleos continuará a aumentar, devido ao desejo de se colocar cada vez mais componentes em um único chip, evitando ao mesmo tempo sua sobrecarga.
+   \item Hardware de uso especial e operações paralelas massivas: Por exemplo, as GPUs da NVIDIA ultrapassaram o padrão das CPUs em desempenho de ponto flutuante nos últimos anos. Além disso, elas tem se tornado tão fáceis quanto, ou até mesmo mais fácil de se programar do que os CPUs multicore.
+ \end{itemize}
+
+Tem-se que o equilíbrio relativo entre esses tipos de componentes em projetos futuros não é claro e provavelmente variará ao longo do tempo. Todavia, parece não haver dúvidas de que as futuras gerações de sistemas informáticos, que vão desde computadores portáteis a supercomputadores, consistirão numa composição de componentes heterogêneos. Mesmo assim, os problemas e desafios para os desenvolvedores nessa nova paisagem computacional de processadores híbridos permanecem assustadores.\cite{CUDA_Example}
+
+\subsection{Paralelismo}
+No decorrer dos últimos anos, as GPUs vem sendo evoluídas e seu uso cada vez mais popular e necessário. Em suas origens, ela era vista apenas como um processador gráfico especializados, que poderiam rapidamente processar e produzir imagens para uma unidade de exibição. Tal uso era bem comum em computadores gamers e consoles. Todavia, o conceito e uso das GPUs mudou, não limitando apenas a produção de imagens, mas também altamente ligada ao uso de processamento ultra-rápido de dados.\cite{CUDA_C_Programming} Como dito anteriormente, as GPUs tem sido cada vez mais ligadas a CPUs, com o intuito de acelerar a capacidade de computação, no chamado sistema heterogêneo. Para se ter uma melhor visão de sua necessidade, podemos perceber que nos dias atuais, GPUs são configuradas em cluster de computação, supercomputadores e até mesmo em muitos sistemas desktop. Seu principal papel se dá como fornecedor de grandes quantidades de poder computacional, devido a sua grande velocidade de processamento de grandes dados. Assim, GPUs têm permitido avanços importantes não apenas na ciência e engenharia, mas também em outras áreas, como a medicina. \cite{CUDA_C_Programming} Isso se dá pelo motivo de que com as GPUs, é possível colocar diversos núcleos de computação para trabalhar em paralelo.
+
+	Em uma forma simples de se explicar, podemos dizer que a computação paralela é a utilização simultânea de múltiplos recursos computacionais para resolver um problema computacional. Para isso, temos que, um problema é dividido em partes distintas que podem ser resolvidas simultaneamente, cada parte então é dividida em uma série de instruções, e as mesma são executadas simultaneamente em diferentes processadores. Para controlar tudo isso, é definido um mecanismo de controle global. Veja a figura 2.1
+
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=1.2]{./fig/parallel_computing}
+	\caption{Parallel x Serial programming representation \cite{BlaiseLab} }
+	\label{fig:parallel_repres}
+\end{figure}
+
+
+Um exemplo simples para se entender melhor como funciona seria o incremento de valores em um vetor. Se utilizarmos um algoritmo sequencial, provavelmente usaremos um "for" para percorrer todo o vetor e assim incrementar o valor de cada elemento, um a um sequencialmente. Entretanto, ao paralelizar esse problema, teríamos vários processadores disponíveis, nos possibilitando a construção de um algoritmo que particione cada posição do vetor para um processador, ou seja, cada thread terá o valor de uma posição do vetor. Sendo assim, cada processador poderá fazer o incremento de seu valor, simultaneamente com os outros.\cite{BlaiseLab}
+
+Temos que muitos problemas são tão grandes e complexos, que é impraticável ou impossível resolvê-los em um único computador. Percebe-se então que o grande objetivo da computação paralela é resolver problemas complexos em um menor tempo, com um custo mais baixo,  afinal os computadores paralelos podem ser construídos a partir de componentes de mercadorias de preços razoáveis e acessíveis.\cite{BlaiseLab}
+
+Para se ter uma paralelização eficiente, é preciso saber como mapear os cálculos simultâneos feitos na GPU, afinal, a chave da computação paralela é explorar de forma correta e eficiente a concorrência.  Sabemos de fato que, a computação paralela geralmente envolve duas áreas distintas de tecnologias de computação:\cite{CUDA_C_Programming}
+\begin{itemize}
+   \item Arquitetura de computadores(aspecto hardware): Se concentra em suportar o paralelismo em a nível de arquitetura. É necessário fornecer uma plataforma que suporte a execução simultânea de vários processos ou múltiplos threads, para se obter uma execução paralela em software.
+   \item Programação paralela(aspecto software): Se concentra em resolver o problema, simultaneamente, explorando totalmente o poder computacional da arquitetura do computador e da GPU.
+ \end{itemize}
+ 
+ Hoje em dia, a computação paralela está se tornando onipresente, e seu uso essencial em diversas aplicações. Existem dois tipos fundamentais de paralelismo nas aplicações:\cite{CUDA_C_Programming}
+\begin{itemize}
+   \item Paralelismo de tarefas: Surge quando  há muitas tarefas ou funções que podem ser executadas independentemente e em grande parte paralelamente. Ou seja, há uma concentração na distribuição de funções em vários núcleos.
+   \item Paralelismo de dados: Surge quando há muitos itens de dados que podem ser operados ao mesmo tempo. Sendo assim, cada tarefa executa uma mesma série de cálculos sobre diferentes dados. Ou seja, há uma concentração na distribuição dos dados em vários núcleos.
+ \end{itemize}
+ 
+ \subsection{Taxonomia de Flynn}
+ Existem várias maneiras de se classificar uma arquitetura de computador. Nos dias atuais, um esquema de classificação amplamente utilizado é a taxonomia de Flynn, definida em 1966\cite{Adv_Comp_Arq}, que classifica arquiteturas em quatro tipos diferentes, a partir de como as instruções e os dados fluem através de núcleos. Flynn propôs a arquitetura com as seguintes categorias:
+ 
+ \begin{itemize}
+   \item Única Instrução, único dado  (SISD - single instruction, single data): Este é o tipo mais antigo de computador, uma arquitetura serial. Existem apenas um núcleo no computador. Em qualquer momento,  apenas um fluxo de instruções é executado e as operações são operadas em um fluxo de dados. A figura 2,2 ilustra graficamente a estrutura e visão da arquitetura.
+
+   \item Única instrução, múltiplos dados (SIMD - single instruction, multiple data): Refere-se a um tipo de arquitetura paralela. Existe apenas uma unidade de controle, porém vários núcleos no computador. Todos os núcleos executam o mesmo fluxo de instruções a qualquer momento, cada um operando em fluxos de dados diferentes. A maioria dos computadores modernos empregam a arquitetura SIMD. Uma grande vantagem desse modelo é que, ao escrever o código na CPU, os programadores podem continuar a pensar de forma sequencial, e ao mesmo tempo, obter um bom ganho de velocidade paralela de operações, devido os detalhes serem responsabilidade do compilador. A figura 2.3 ilustra graficamente a estrutura e visão da arquitetura.
+  
+   \item Múltiplas instruções, único dado (MISD - multiple instruction, single data): Cada núcleo opera no mesmo dato atravês de instruções distintas. É uma arquitetura incomum e de pouco uso prático. A figura 2.4 ilustra graficamente a estrutura e visão da arquitetura.
+  
+
+   \item Múltiplas intruções, múltiplos dados (MIMD - multiple instruction, multiple data): Refere-se a um tipo de arquitetura paralela, assim como SIMD. Porém nesse modelo, múltiplos núcleos opera em múltiplos dados, cada um executando instruções independentes. Muitas das arquiteturas MIMD inclui também SIMD. A figura 2.5 ilustra graficamente a estrutura e visão da arquitetura.
+  
+
+ \end{itemize} 
+ 
+    \begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.4]{./fig/SISD}
+	\caption{SISD Representation \cite{Adv_Comp_Arq} }
+	\label{fig:SISD Representation}
+	\end{figure}
+	
+   \begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.8]{./fig/SIMD}
+	\caption{SIMD Representation \cite{Adv_Comp_Arq} }
+	\label{fig:SIMD Representation}
+	\end{figure}
+	
+	\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.75]{./fig/MISD}
+	\caption{MISD Representation \cite{Adv_Comp_Arq} }
+	\label{fig:MISD Representation}
+	\end{figure}
+	
+	\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.75]{./fig/MIMD}
+	\caption{MIMD Representation \cite{Adv_Comp_Arq} }
+	\label{fig:MIMD Representation}
+	\end{figure}
+ 
+ 
+\subsection{Arquiteturas de computação paralela}
+
+A nível de computação paralela, os modelos de arquiteturas mais usados são SIMD e MIMD. Quando há a necessidade de haver apenas uma unidade de controle, onde todos os processadores executam a mesma instrução, então a arquitetura SIMD é usada. Todavia, quando se tem mais de um processador onde cada um tem sua própria unidade de controle e pode consequentemente executar diferentes instruções sobre diferentes dados, então a arquitetura MIMD é usada.
+
+	O sistema SIMD compreende uma das três classes de computadores paralelos com maior sucesso comercial. Uma série de factores contribuíram para este êxito, incluindo: \cite{Adv_Comp_Arq}
+
+\begin{itemize}
+   \item Simplicidade de conceito e programação.
+   \item Regularidade da estrutura.
+   \item Escalabilidade fácil de tamanho e desempenho
+   \item Aplicabilidade direta em vários campos que exige paralelismo para atingir o desempenho necessário.
+ \end{itemize}
+
+Nesse modelo, existe um conjunto bidimensional de elementos de processamento, cada um conectado a seus quatro vizinhos mais próximos, todos os processadores executam a mesma instrução simultaneamente e cada processador incorpora memória local. Além disso, os processadores são programáveis, isto é, eles podem executar uma variedade de funções e os dados podem propagar rapidamente através da matriz. 
+	
+Há duas principais maneiras de se configurar máquinas de arquitetura SIMD.\cite{CUDA_C_Programming}
+
+\begin{itemize}
+   \item Arquitetura SIMD com memória distribuída:
+   \begin{itemize}
+   		\item Possui uma unidade de controle que interage com cada elemento de processamento na arquitetura.
+   		\item Cada processador possui sua própria memória local, conforme observado na Fig 2.6.
+   		\item Os elementos do processador são utilizados como uma unidade aritmética onde as instruções são fornecidas pela unidade de controle. Para que um elemento de processamento se comunique com outra memória na mesma arquitetura, para obter informações por exemplo, ele terá que adquiri-la através da unidade de controle.
+   		\item A grande inconveniência é com o tempo de desempenho, pois a unidade de controle tem de lidar com as transferências de dados.
+   \end{itemize}
+   
+   \item Arquitetura SIMD com memória compartilhada:  necessário.
+   \begin{itemize}
+   		\item Nesta arquitetura, um elemento de processamento não tem uma memória local, mas em vez disso está conectado a uma rede onde ele pode se comunicar com um componente de memória. A Figura 2.7 mostra todos os elementos de processamento conectados à mesma rede, o que lhes permite compartilhar seu conteúdo de memória com outros.
+   		\item A desvantagem nesta arquitetura é que, se houver a necessidade de expandir essa arquitetura, cada módulo (elementos de processamento e memória) deve ser adicionado separadamente e configurado.
+   		\item No entanto, esta arquitectura é ainda benéfica, uma vez que melhora o tempo de desempenho e as informações podem ser transferidas mais livremente sem a unidade de controlo.
+   \end{itemize}
+ \end{itemize}
+ 
+ O sistema MIMD, que significa Multiple Instruction, Multiple Data é a forma mais simples e possivelmente a mais básica de processamento paralelo. Sua arquitetura consiste em uma coleção de N processadores independentes, cada um com uma memória, que pode ser comum a todos os outros processadores. Há duas principais maneiras de se configurar máquinas de arquitetura MIMD.\cite{analy_SIMD_MIMD}
+	
+\begin{itemize}
+   \item Arquitetura MIMD com memória compartilhada: 
+   \begin{itemize}
+   		\item Cria um conjunto de processadores e módulos de memória.
+   		\item Qualquer processador pode acessar diretamente qualquer módulo de memória através de uma rede de interconexão conforme observado na Fig 2.8.
+   		\item O conjunto de módulos de memória define um espaço de endereço global que é compartilhado entre os processadores.
+   \end{itemize}
+   
+   \item Arquitetura MIMD com memória distribuída: 
+   \begin{itemize}
+   		\item Ela Replica os pares de processador/memória e os conecta através de uma rede de interconexão. O par de processador/memória é chamado de elemento de processamento.
+   		\item Cada elemento de processamento podem interagir entre si através do envio de mensagens, como pode ser observado na figura 2.9.
+   		
+   \end{itemize}
+\end{itemize}	
+	
+Nos últimos anos, a nível de arquitetura, foram feitos muitos avanços para atingir objetivos como: \cite{CUDA_C_Programming}
+
+\begin{itemize}
+   \item Diminuir a latência: É o tempo que leva para uma operação iniciar e concluir, e é comumente expressa em microssegundos. Ou seja, ela mede o tempo para concluir uma operação.
+   \item Aumentar a largura de banda(bandwidth): É a quantidade de dados que podem ser processados por unidade de tempo, normalmente expressos em megabytes/s ou gigabytes/s.
+   \item Aumentar o rendimento(throughput): É a quantidade de operações que podem ser processadas por unidade de tempo, comumente expressa como gflops. Ou seja, mede o número de operações processadas em uma determinada unidade de tempo.
+\end{itemize}	 
+
+	\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.6]{./fig/SIMD_Distributed_Memory}
+	\caption{SIMD Distributed Memory Architecture \cite{CUDA_C_Programming} }
+	\label{fig:SIMD Distributed Memory}
+	\end{figure}
+	
+   \begin{figure}[htb]
+	\centering
+	\includegraphics[scale=1.1]{./fig/SIMD_Shared_Memory}
+	\caption{SIMD Shared Memory Architecture \cite{CUDA_C_Programming}}
+	\label{fig:SIMD Shared Memory}
+	\end{figure}
+	
+	\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.36]{./fig/MIMD_Shared_Memory}
+	\caption{MIMD Shared Memory Architecture \cite{CUDA_C_Programming} }
+	\label{fig:MIMD Shared Memory}
+	\end{figure}
+	
+	\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=1.0]{./fig/MIMD_Distributed_Memory}
+	\caption{MIMD Distributed Memory Architecture \cite{CUDA_C_Programming} }
+	\label{fig:MIMD Representation}
+	\end{figure}
+	
+\subsection{Arquitetura heterogênea}
+
+Atualmente, a computação heterogênea consiste em dois sockets de CPU multicore e dois ou mais GPUs de múltiplos núcleos. Hoje em dia, uma GPU não é uma plataforma autônoma, mas um co-processador para uma CPU. Portanto, as GPUs devem operar em conjunto com um host baseado em CPU através de um barramento PCI-Express. Por esse motivo, em termos de programação e conceitos, a CPU é chamada de host e a GPU é chamada de dispositivo(device).\cite{CUDA_C_Programming}
+
+Como dito anteriormente, uma aplicação heterogênea consiste em 2 partes, código do host e código do dispositivo. O código host roda exclusivamente nas CPUs e código do dispositivo nas GPUs. Um aplicativo executando em uma plataforma heterogênea é tipicamente inicializado pela CPU. O código da CPU é responsável por gerenciar o ambiente, o código e os dados do dispositivo antes de carregar tarefas de computação intensiva no dispositivo(GPU). Com aplicações computacionais intensivas, as seções do programa frequentemente exibem uma grande quantidade de paralelismo de dados. As GPUs são usadas para acelerar a execução desta porção de paralelismo de dados. Quando um componente de hardware que é fisicamente separado da CPU é usado para acelerar seções computacionalmente intensivas de um aplicativo, é referido como um acelerador de hardware. GPUs são, sem dúvida, o exemplo mais comum de um acelerador de hardware.\cite{Adv_Comp_Arq}
+
+\subsection{CPU x GPU}
+
+A computação em GPU não se destina a substituir a computação em CPU. Cada abordagem tem vantagens para certos tipos de programas. A computação da CPU é boa para tarefas de controle intensivo, e a computação GPU é boa para tarefas de computação intensiva de dados paralelas. Quando CPUs são colocadas juntas com GPUs, é gerado uma combinação poderosa. A CPU é otimizada para cargas de trabalho dinâmicas marcadas por curtas sequências de operações computacionais e controles imprevisíveis; E GPUs visam a outra extremidade do espectro: cargas de trabalho que são dominadas por tarefas computacionais com controle simples de execução(flow). Existem duas dimensões que diferenciam o escopo de aplicativos para CPU e GPU: Nível de paralelismo e tamanho dos dados.\cite{CUDA_Example}
+
+Se um problema tem um tamanho de dados pequeno, lógica de controle sofisticada e / ou paralelismo de baixo nível, a CPU é uma boa escolha por causa de sua capacidade de lidar com lógica complexa e paralelismo de nível de instrução. Se o problema na mão, em vez disso, processa uma enorme quantidade de dados e exibe um paralelismo de dados maciço, a GPU é a escolha certa porque tem um grande número de núcleos programáveis, pode suportar multi-threading massivo e tem uma largura de banda de pico maior comparada com a CPU.
+ 
+As arquiteturas de computação paralela heterogêneas de CPU + GPU evoluíram porque a CPU e a GPU possuem atributos complementares que permitem que os aplicativos desempenhem melhor com os dois tipos de processadores. Portanto, para um ótimo desempenho, você pode precisar usar tanto a CPU como a GPU para sua aplicação, executando as partes sequenciais ou as partes paralelas da tarefa na CPU e partes intensivas de dados paralelos na GPU.
+
+\subsection{Métricas de desempenho}
+
+Quando desenvolvemos algoritmos a serem executados em uma arquitetura paralela, é sempre esperando uma boa eficiência. Por exemplo, quando é criado um algoritmo paralelo em uma arquitetura que contém 8(oito) processadores, é então esperado um desempenho de pelo menos 8(oito) vezes mais rápido se comparado a uma arquitetura mono-processada. Entretanto, nem sempre é assim que ocorre, podendo inclusive ocorrer o contrário, um desempenho inferior. Isso se dá porque o fato de se ter mais processadores não te garante uma maior eficiência, pois há uma redução no tempo de execução, devido o grau de dependência existentes entre os processadores e as tarefas paralelizadas.
+
+
+Sendo assim, ao se pensar no desempenho de um algoritmo paralelo, tem que se levar em conta todas as situações e cenários. Por exemplo, o problema pode ser totalmente paralelizável? Como vai ser a comunicação entre os processadores? Qual o tamanho de memória compartilhada será usada? Sendo assim, é usado alguns conceitos e métricas para a análise da eficiência e desempenho computacional do algoritmo paralelo, sao elas: eficiência, aceleração, custo, granularidade e escalabilidade.\cite{analy_SIMD_MIMD}
+
+\subsubsection{Eficiência}
+
+A eficiência relaciona o speedup com o número de processadores, ou seja, identifica a utilização do processador. Todavia, o comportamento ideal não é conseguido porque ao executar um algoritmo paralelo, os elementos de processamento não podem dedicar 100\% de seu tempo aos cálculos do algoritmo. Em um sistema paralelo ideal a eficiência é igual a um porém, na prática, a eficiência está entre zero e um. \cite{analy_SIMD_MIMD}
+
+\subsubsection{Aceleração(speedup)}
+
+Com um problema dado e paralelizado, quanto foi o ganho de performance se comparado a uma implementação sequencial? Speedup é uma medida que capta o benefício relativo em se resolver um problema em paralelo.
+
+	Speedup, S, pode ser definido como a razão entre o tempo gasto para resolver um problema em um computador serial e o tempo necessário para resolver o mesmo problema em um computador paralelo. Por exemplo, considerando o exemplo do bubble sort, assumimos que: 
+	
+\begin{itemize}
+   \item Versão serial do bubble sort de 105(MATH elevado - falta fazer) registros leva 150 s
+   \item Uma versão quicksort serial pode resolver o mesmo problema em 30 s.
+   \item Uma versão paralela do bubble sort  Leva 40 segundos em 4 núcleos.
+\end{itemize}
+
+Parece que a versão paralela do algoritmo resulta em uma aceleração de 150/40 = 3,75. Todavia, esta conclusão é enganosa. O algoritmo paralelo resulta em uma aceleração de 30/40 = 0,75 em relação ao melhor algoritmo serial. Quando é medido o Speedup, deve se usar a melhor versão serial do problema, para se ter um ganho real.
+
+\subsubsection{Custo}
+
+Na computação paralela, custo é definido pelo produto entre o tempo de execução paralelo e o número de processadores. O custo reflete a soma do tempo que cada processador gasta para resolver o problema.
+
+\subsubsection{Granularidade}
+
+Uma chave para alcançar um bom desempenho paralelo é escolher a granularidade certa para a aplicação. Granulosidade na computação  paralela pode ser definida como o tamanho das unidades de trabalho submetidas aos processadores, ou em algumas vezes, como a quantidade de trabalho realizado entre as iterações do processador.
+ 
+	A granulosidade pode ser fina, média ou grossa. Na granulosidade fina ou fine- grain identificamos que houve a decomposição em um grande número de pequenas tarefas, normalmente implicando em considerável comunicação  entre os processadores. Já na granulosidade grossa ou coarse-grain, a decomposição é feita num pequeno número de grandes tarefas, o que pode implicar em baixa comunicação  entre os processadores. Ao desenvolver um algoritmo em paralelo, devemos analisar qual o melhor caminho. Se granularidade é muito fina, o desempenho pode sofrer de sobrecarga de comunicação. Se a granularidade é muito grosseira, então o desempenho pode sofrer de desequilíbrio de carga. O objetivo é determinar a granularidade certa (geralmente maior é melhor) para tarefas paralelas, evitando o desequilíbrio de carga e sobrecarga de comunicação para obter o melhor desempenho.\cite{analy_SIMD_MIMD}
+	
+\subsubsection{Escalabilidade}
+
+Por escalabilidade, entendemos como a capacidade de aumentar o desempenho á medida que a complexidade do problema aumenta, isso a nível de hardware ou ao software. A nível de hardware, escalável é uma característica de um arquitetura onde a ampliação do seu tamanho (inclusão de mais sistemas computacionais) tem consequência no aumento do seu desempenho. Já a nível de software, o algoritmo é escalável quando pode acomodar o aumento do tamanho do problema com um aumento baixo dos passos de computação a ser realizados.
+
+\section{Ambientes de programação}  
+
+As primeiras GPUs foram projetadas como aceleradores gráficos, suportando somente tubulações específicas de função fixa. Começando no final dos anos 90, o hardware tornou-se cada vez mais programável, culminando com o primeiro GPU da NVIDIA em 1999. Mas GPGPU estava longe de ser fácil na época, mesmo para aqueles que sabiam linguagens de programação gráfica, como OpenGL.\cite{CUDA_Model_Programming} Em 2003, uma equipe de pesquisadores liderada por Ian Buck revelou Brook, o primeiro modelo de programação amplamente adotado para estender C com construções de dados paralelos. Usando conceitos como fluxos, kernels e operadores de redução, o compilador Brook e o sistema runtime expuseram a GPU como um processador de propósito geral em uma linguagem de alto nível. Mais importante ainda, os programas do Brook não eram apenas mais fáceis de escrever do que o código GPU manualmente ajustado, eram sete vezes mais rápidos do que o código existente semelhante. A NVIDIA sabia que o hardware incrivelmente rápido precisava ser acoplado a ferramentas intuitivas de software e hardware e convidou Ian Buck para se juntar à empresa e começar a desenvolver uma solução para executar C na GPU. Juntando o software e o hardware, a NVIDIA revelou a CUDA em 2006, a primeira solução do mundo para computação geral em GPUs.\cite{Adv_Comp_Arq}
+
+\subsection{CUDA}
+
+CUDA® é uma plataforma de computação paralela e modelo de programação inventado pela NVIDIA. Permite aumentos dramáticos no desempenho de computação, aproveitando a potência da unidade de processamento gráfico (GPU). Com milhões de GPUs CUDA espalhadas pelo mundo até agora, os desenvolvedores de software, cientistas e pesquisadores estão encontrando amplos usos para computação GPU com CUDA e obtendo grandes avanços em suas aplicações e pesquisas.\cite{CUDA_Model_Programming} Em linhas gerais, podemos resumir CUDA como uma hierarquia de threads mapeadas para os processadores de uma GPU.
+
+\begin{itemize}
+   \item Parcelas paralelas da aplicação são executadas no dispositivo(device) como kernels 
+   		\begin{itemize}
+   			\item 1(um) kernel é executado de cada vez
+   			\item Muitas threads executam cada kernel
+   		\end{itemize}
+   \item Threads em CUDA são extremamente leves
+   		\begin{itemize}
+   			\item Muito pouca sobrecarga de criação
+   			\item Comutação rápida
+   		\end{itemize}
+   \item CUDA usa 1000s de threads para alcançar uma boa eficiência
+   \item Um kernel CUDA é executado por um array de threads
+   		\begin{itemize}
+   			\item Todos as threads executam o mesmo código
+   			\item Cada thread tem um ID que ele usa para calcular endereços de memória e tomar decisões de controle
+   		\end{itemize}
+   \item 1(um) SM (streamming multiprocessor) executa um ou mais blocos de threads e os CUDA Cores (ou SPs) e outras unidades de execuc?a?o que compo?em um SM executam as threads. O SM executa threads em grupos de 32 threads, chamado warp. 
+\end{itemize}
+
+\subsection{Estrutura de um programa em CUDA}
+
+Um programa CUDA consiste de uma mistura das duas partes, código host que é executado pela CPU e código do dispositivo que é executado na GPU, afinal CUDA roda em um sistema heterogêneo.\cite{CUDA_C_Programming}
+
+O compilador CUDA nvcc da NVIDIA separa o código do dispositivo do código do host durante o processo de compilação. O código do host é um código C padrão e é compilado com compiladores C. O código do dispositivo é escrito usando CUDA C estendido com palavras-chave para rotular funções paralelas de dados, chamadas kernels. O código do dispositivo é compilado usando nvcc. Durante o estágio de link, as bibliotecas de tempo de execução CUDA são adicionadas para chamadas de procedimento do kernel.\cite{CUDA_Example}
+
+Em um típico programa NVIDIA CUDA C é comum a intercalação de código sequencial e paralelo. Geralmente, é indicado a seguir a seguinte estrutura para a criação do código usando CUDA:
+
+\begin{itemize}
+   \item Alocar memória para a GPU.
+   \item Copiar os dados de memória da CPU para a memória da GPU.
+   \item Invocar o kernel CUDA para executar a computação específica do programa.
+   \item Copiar os dados da memória da GPU para a memória da CPU.
+   \item Destruir memórias alocadas para a GPU.
+\end{itemize}
+
+\subsection{Desafios Programação em CUDA C}
+
+A principal diferença entre a programação da CPU e a programação da GPU é o nível de exposição do programador aos recursos arquitetônicos da GPU. Pensar em paralelo e ter uma compreensão básica da arquitetura GPU permite que você escreva programas paralelos que escalam centenas de núcleos tão facilmente quanto você escreve um programa sequencial. 
+
+Para escrever um código eficiente, é preciso ter um conhecimento básico de arquiteturas de CPU. Por exemplo, a localidade(locality) é um conceito muito importante na programação paralela. Localidade refere-se à reutilização de dados de modo a reduzir a latência de acesso à memória. As arquiteturas de CPU modernas usam caches grandes para otimizar aplicações com boa localidade espacial e temporal. É responsabilidade do programador projetar seu algoritmo para usar eficientemente o cache da CPU. Os programadores devem lidar com otimização de cache de baixo nível, mas não têm introspecção em como os segmentos estão sendo agendados na arquitetura subjacente porque a CPU não expõe essas informações.\cite{CUDA_Example}
+
+É preciso também estar ciente sobre os diferentes tipos de memórias usadas na programação paralela, tais como memória compartilhada e local. Memória compartilhada é exposta pelo modelo de programação CUDA e pode ser considerada como um cache gerenciado por software, que fornece grande velocidade, conservando a largura de banda na memória principal. Com a memória compartilhada, você pode controlar a localidade do seu código diretamente. Já a memória local tem escopo somente de uma thread e fica localizada na memo?ria global. Estrutura de vetores que ocupam grande quantidade de registradores sa?o tipos de varia?veis candidatas a serem colocadas nesta memo?ria. Por residir na memo?ria global, essa memo?ria possui a mesma late?ncia e largura de banda dessa memo?ria. 

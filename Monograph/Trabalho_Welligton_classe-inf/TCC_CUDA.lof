@@ -1,0 +1,24 @@
+\select@language {brazil}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces \'Arvore filogen\'etica \cite {dissert_elias}\relax }}{17}{figure.caption.9}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces \'Arvore filogen\'etica e suas formas de representa\c c\~ao \cite {dissert_elias}\relax }}{18}{figure.caption.11}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Parallel x Serial programming representation \cite {BlaiseLab} \relax }}{22}{figure.caption.17}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces SISD Representation \cite {Adv_Comp_Arq} \relax }}{24}{figure.caption.19}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces SIMD Representation \cite {Adv_Comp_Arq} \relax }}{24}{figure.caption.20}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces MISD Representation \cite {Adv_Comp_Arq} \relax }}{25}{figure.caption.21}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces MIMD Representation \cite {Adv_Comp_Arq} \relax }}{25}{figure.caption.22}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces SIMD Distributed Memory Architecture \cite {CUDA_C_Programming} \relax }}{27}{figure.caption.24}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces SIMD Shared Memory Architecture \cite {CUDA_C_Programming}\relax }}{27}{figure.caption.25}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces MIMD Shared Memory Architecture \cite {CUDA_C_Programming} \relax }}{28}{figure.caption.26}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces MIMD Distributed Memory Architecture \cite {CUDA_C_Programming} \relax }}{28}{figure.caption.27}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Estrutura para representa\c c\~ao dos dados \cite {dissert_elias}\relax }}{41}{figure.caption.43}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Speedup para 128 \'avores\relax }}{45}{figure.caption.60}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Speedup para 1024 \'avores\relax }}{45}{figure.caption.61}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Speedup para 4096 \'avores\relax }}{46}{figure.caption.62}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Speedup para 8192 \'avores\relax }}{46}{figure.caption.63}
+\addvspace {10\p@ }
+\contentsfinish 

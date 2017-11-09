@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{meuatalhoref}
+Nome do~Autor.
+\newblock {\em Aqui vem o titulo}.
+\newblock Editora aqui, cidade, 2017.
+
+\bibitem{meuatalhoArticle}
+Nome do~Autor.
+\newblock Aqui vem o titulo do artigo.
+\newblock {\em Revista A}, 2017.
+
+\end{thebibliography}

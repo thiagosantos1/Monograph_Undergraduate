@@ -1,0 +1,73 @@
+%
+% ********** Página de Rosto
+%
+
+% titlepage gera páginas sem numeração
+\begin{titlepage}
+
+\begin{center}
+
+\small
+
+% O comando @{} no ambiente tabular x é para criar um novo delimitador
+% entre colunas que não a barra vertical | que é normalmente utilizada.
+% O delimitador desejado vai entre as chaves. No exemplo, não há nada,
+% de modo que o delimitador é vazio. Este recurso está sendo usado para
+% eliminar o espaço que geralmente existe entre as colunas
+\begin{tabularx}{\linewidth}{ c X }
+% A figura foi colocada dentro de um parbox para que fique verticalmente
+% centralizada em relação ao resto da linha
+\parbox[c]{3cm}{\includegraphics[width=\linewidth]{Imagens/inf.jpeg}} &
+\begin{center}
+\textsf{\textsc{Instituto Federal de Educao Cincia\\
+ e Tecnologia do Rio Grande do Norte \\
+Diretoria de Gesto de Tecnologia da Informao \\
+Curso Superior de Tecnologia em Redes de Computadores
+}} 
+\end{center}
+
+\end{tabularx}
+
+
+% O vfill é um espaço vertical que assume a máxima dimensão possível
+% Os vfill's desta página foram utilizados para que o texto ocupe
+% toda a folha
+\vfill
+
+\LARGE
+
+\textbf{Aqui  o ttulo de seu trabalho}
+
+\vfill
+
+\Large
+
+\textbf{Fulano do Anzis Pereira}
+
+\vfill
+
+\normalsize
+
+Prof. Dr. Rodrigo Siqueira Martins
+
+\vfill
+
+\hfill
+\parbox{0.5\linewidth}{\textbf{%
+% Descomente as opções que se aplicam ao seu caso
+%Proposta de Tema para Qualificação}
+%Dissertação de Mestrado}
+Relatrio} apresentado  Disciplina de Administrao de Sistemas Proprietrios
+como parte dos requisitos para obteno da nota da 1a unidade}
+
+
+\vfill
+
+\large
+
+%Data
+Natal, RN, junho de 2014
+
+\end{center}
+
+\end{titlepage}

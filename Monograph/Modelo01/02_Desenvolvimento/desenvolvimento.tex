@@ -1,0 +1,381 @@
+%%
+%% CapÌtulo 2: Desenvolvimento do trabalho
+%%
+
+\mychapter{Desenvolvimento}
+\label{Cap:desenvolvimento}
+
+Este capítulo apresenta considerações de ordem geral sobre a
+organização e desenvolvimento do texto.
+
+\section{O que escrever}
+\label{Sec:oque}
+
+É possível iniciar o capítulo de desenvolvimento informando como será desenvolvido o trabalho e o detalhe das ferramentas ou o conteúdo que será abordado e utilizado. Em seguida comente o conteúdo em conjunto com o conhecimento adquirido junto as consultas e referências bibliográficas. 
+Isso demonstra que foi feito uma pesquisa anterior e mostra que o trabalho tem relevância científica, ou seja, não está sendo "inventada a roda". 
+
+\section{Divisões do documento e referências cruzadas}
+\label{Sec:divisoes}
+
+Sempre que for modificar/aprofundar partes de um tema, é interessante criar uma seção de maneira a tornar o assunto mais focado e facilitar a leitura. 
+Não crie seções sem que estas tenham nenhum texto ou sigam direto para outra seção. Se isso acontecer é melhor rever como está organizado o texto pois 
+pode se tornar necessário remover capítulos ou seções. 
+
+No final de cada capítulo é importante apresentar comentário do que foi desenvolvido no texto permitindo ao leitor compreender a visão geral do conteúdo e pode-se inclusive contextualizar o capítulo seguinte.
+
+%%%%PAREI AQUI
+
+Os capítulo, seções e subseções devem ser rotulados para que possam ser
+referenciados em qualquer parte do texto.  Isto é feito com o comando
+\verb|\label{}|, que deve ser colocado logo após (nunca antes) o
+comando que criou a seção, capítulo, etc. O parâmetro do comando
+\texttt{label} é o nome simbólico que ser· usado para se fazer
+referência a esta entidade dentro do texto, com o comando
+\verb|\ref{}|. O nome pode ser qualquer coisa, mas não pode conter
+acentos, por exemplo. 
+
+Veja a seguir um exemplo de
+utilização das referências cruzadas:
+quotation é um ambiente para citações, que ficam "recuadas" em
+relação ao resto do texto
+\begin{quotation}
+\dots no capítulo \ref{Cap:introducao} apresentamos um modelo de
+capítulo do texto.
+\end{quotation}
+
+\section{Seções}
+\label{Sec:secoes}  %% labels n„o devem conter caracteres acentuados
+
+São as divisões dos capítulos. Essas seções são do criadas vindo do geral para o mais específico. Por exemplo de sistemas operacionais para processos, compartilhamento de memória, etc.
+
+\subsection{Subseções}
+\label{Sec:subsecoes}
+
+Subseções são divisões das seções. No exemplo do texto sobre
+Processos pode-se criar uma subseção de concorrência, deadlock, etc
+
+\subsubsection*{Subsubseções}
+\label{Sec:subsubsecoes}
+
+Subsubseções são divisões de subseções e não devem ser numeradas no
+texto. 
+
+\section{Índices}
+
+O \LaTeX\ é capaz de gerar automaticamente o índice do texto
+(sumário), os indices de figuras e de tabelas.
+
+\subsection{Sumário}
+\label{Sec:sumario}
+
+Todas as divisões numeradas (capítulos, seções e subseções) são
+automaticamente incluídas no sumário. 
+
+\subsection{Listas de figuras e tabelas}
+\label{Sec:listasfigtab}
+
+Estas listas s„o geradas automaticamente a partir dos
+\texttt{caption}'s de todos os ambientes \texttt{figure} e
+\texttt{table}. 
+
+\section{Bibliografia}
+\label{Sec:citacoes}
+
+As referências bibliográficas são incluídas dentro de um ambiente
+específico para este fim, através dos comandos
+\verb|\begin{thebibliography}| e \verb|\end{thebibliography}|. Um
+documento só pode conter um único destes ambientes. A referência aos
+documentos no texto é feita usando-se referências cruzadas e chaves
+simbólicas, da mesma forma que as equações e as figuras. Cada
+documento dentro de um ambiente \texttt{thebibliography} é introduzido
+por um comando \verb|\bibitem|. O argumento obrigatório (entre chaves)
+do comando \texttt{bibitem} é a chave simbólica pela qual o documento
+ser· citado no texto, usando o comando \verb|\cite|.  
+
+A principal vantagem da geração automática de bibliografias é que se
+pode manter um arquivo único com todas as referências bibliográficas
+que foram ou podem vir a ser usadas em algum dos seus documentos
+
+Uma recomendação importante é que as citações não fazem parte do
+texto; portanto, as frases devem fazer sentido mesmo que as expressıes
+de citação sejam removidas. Para exemplificar, não se deve usar:
+\begin{quotation}
+\dots conforme demonstrado por \cite{art-solimaes03}.
+\end{quotation}
+e sim:
+\begin{quotation}
+\dots conforme demonstrado por \citeasnoun{art-solimaes03}.
+
+\dots conforme demonstrado na literatura
+\citeaffixed{art-solimaes03}{e.g. }.\footnote{A abreviatura e.g.
+significa por exemplo. Vem do latim \emph{exempli gratia}. Também se
+usa, para o mesmo caso, v.g. (\emph{verbi gratia}) ou simplesmente
+p.ex.}
+\end{quotation}
+
+\section{Considerações finais}
+
+Os simples fatos de utilizar corretamente uma boa ferramenta de
+formatação de textos e de seguir as recomendações quanto ao estilo
+não garantem a qualidade do documento produzido. O principal
+aspecto a ser levado em conta é a qualidade da redação.
+
+
+
+
+
+
+%%
+%% CapÌtulo 3: Expressões matemáticas
+%%
+
+\mychapter{Expressões matemáticas}
+\label{Cap:matematica}
+
+\LaTeX é insuperável no processamento de expressões matemáticas. Expressões
+simples como $2^{n}$ podem ser editadas no próprio texto. Equações
+complexas como:
+% eqnarray È o comando LaTeX de base para expressıes multilinhas com
+% alinhamento. O & indica o ponto onde todas as linhas devem ser
+% alinhadas. Neste capÌtulo ser„o apresentadas outras opÁıes de alinhamento
+\begin{eqnarray} \label{eq:PDF:RSR}
+  p \left( \gamma \right) & = & \frac{1}{2} \sqrt{\frac{M}{\gamma \bar{\gamma}_{b}}} \frac{1}{ \prod_{i=1}^M {\sqrt{\tilde{\gamma}_i}}}
+  \int_0^{\sqrt{M \delta}} \int_0^{\sqrt{M \delta} - r_M } \cdots
+  \int_0^{\sqrt{M \delta} - \sum_{i = 3}^M {r_i } } \nonumber \\
+  & & p \left( {\frac{\sqrt{M \delta} - \sum_{i = 2}^M {r_i }}{\sqrt{\tilde{\gamma}_1}} ,
+  \frac{r_2}{\sqrt{\tilde{\gamma}_2}} , \ldots ,\frac{r_M}{\sqrt{\tilde{\gamma}_M}} } \right)
+  \, dr_2 \cdots dr_{M-1} \, dr_M
+\end{eqnarray}
+% sem linha em branco
+ou:
+% sem linha em branco
+\begin{equation} \label{eq:TrCGI}
+  T(r) = \frac{1}{f_m}
+  \left( \frac{\pi}{2} \sum_{i=1}^M
+  {\tilde{r}_i^2 \dot{\varsigma}_i^2}\right)^{-1/2}
+  \frac
+  {\begin{array}{ll}
+  \int_0^{\rho \sqrt{M}} \int_0^{\rho \sqrt{M} - r_M } \cdots
+  \int_0^{\rho \sqrt{M} - \sum_{i = 3}^M {r_i } } \int_0^{\rho \sqrt{M} -
+  \sum_{i = 2}^M {r_i } }  \\
+  p \left( {\frac{r_1}{\tilde{r}_1} ,
+  \frac{r_2}{\tilde{r}_2} , \ldots ,\frac{r_M}{\tilde{r}_M} } \right)
+  \, dr_1 \, dr_2 \cdots dr_{M-1} \, dr_M \\ \end{array}}
+  {\begin{array}{ll}
+  \int_0^{\rho \sqrt{M}} \int_0^{\rho \sqrt{M} - r_M } \cdots
+  \int_0^{\rho \sqrt{M} - \sum_{i = 3}^M {r_i } } \\
+  p \left( {\frac{\rho \sqrt{M} - \sum_{i = 2}^M {r_i }}{\tilde{r}_1} ,
+  \frac{r_2}{\tilde{r}_2} , \ldots ,\frac{r_M}{\tilde{r}_M} } \right)
+  \, dr_2 \cdots dr_{M-1} \, dr_M \\ \end{array}}
+\end{equation}
+
+Pequenas expressıes matemáticas como $x_0^2$ podem ser inseridas
+diretamente no texto, delimitadas por cifrıes (\texttt{\$}). Deve-se
+evitar este recurso com expressıes muito grandes, como
+
+$\left[\begin{array}{cc} 1 & \frac{2}{x+1} \\ -2 &
+1\end{array}\right]^{-1}$, porque o espaçamento entre as linhas fica
+prejudicado. Para incluir expressıes n„o numeradas maiores, pode-se
+utilizar o par de delimitadores \verb|\[| e \verb|\]|, o que gera
+expressıes centralizadas na página:
+
+Um erro comum em expressões matemáticas é o de digitar os nomes de
+funções diretamente, sem utilizar os comandos apropriados. Por
+exemplo, a express„o $\sin(\omega t+\phi)$ est· correta, enquanto que
+a express„o $sin(\omega t+\phi)$ È interpretada pelo \LaTeX como sendo
+o produto das variáveis $s$, $i$ e $n$ pela expressão entre
+parênteses. 
+
+
+
+
+
+
+%%
+%% CapÌtulo 4: Figuras, gráficos e tabelas
+%%
+
+\mychapter{Figuras, tabelas e gráficos}
+\label{Cap:figuras}
+
+Uma das maiores dificuldades na edição de textos de qualidade é o
+posicionamento dos elementos gráficos: figuras, gráficos e
+tabelas. Como estes elementos muitas vezes são grandes, aparece o
+dilema sobre o que fazer quando uma quebra de página deveria acontecer
+no meio do elemento. H· duas possibilidades:
+\begin{enumerate}
+\item O autor informa exatamente onde o elemento gráfico deve ficar no
+texto, evitando que quebras de páginas aconteçam no meio de um
+elemento. O problema com esta abordagem È que todo o trabalho de
+posicionamento pode ser perdido caso se inclua ou se exclua algum
+texto ou elemento.
+\item O editor de texto posiciona os elementos gráficos de forma a não
+deixar espaços em branco nas páginas. Estes elementos que podem ser
+posicionados pelo editor s„o conhecidos como \emph{elementos
+flutuantes}. O problema com esta abordagem È que o posicionamento
+adotado pode não corresponder às expectativas do autor.
+\end{enumerate}
+
+O \LaTeX\ oferece as duas possibilidades de posicionamento. Este
+capítulo apresenta exemplos de inclusão de elementos gráficos no
+texto, bem como algumas ferramentas externas ao \LaTeX\ que podem ser
+utilizadas para gerá-los.
+
+\begin{figure}[tbp]
+\caption{Trecho de \emph{Os Lusíadas}, de Luis de Camões}
+\label{Fig:textoflutuante}
+% hrule - linha horizontal
+\hrule
+% As minipage's s„o muito ˙teis para se colocar duas coisas na mesma linha
+\begin{minipage}{0.45\linewidth}
+% flushleft - alinha ‡ esquerda
+\begin{flushleft}
+As armas e os barıes assinalados\\
+Que da ocidental praia lusitana\\
+Por mares nunca dantes navegados\\
+Passaram ainda além da Trapobana\\
+Em perigos e guerras esforçados\\
+Mais do que prometia a força humana\\
+Entre gente remota edificaram\\
+Novo reino, que tanto sublimaram
+\end{flushleft}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\linewidth}
+% flushright - alinha ‡ direita
+\begin{flushright}
+E também as memórias gloriosas\\
+Daqueles reis que foram dilatando\\
+A Fé, o Império, as terras viciosas\\
+De ¡frica e ¡sia andaram devastando,\\
+E aqueles que por obras valorosas\\
+Se vão da lei da morte libertando:\\
+Cantando espalharei por toda parte,\\
+Se a tanto me ajudar o engenho e arte.
+\end{flushright}
+\end{minipage}
+\hrule
+\end{figure}
+
+\begin{table}[bp]
+% As minipage's s„o muito ˙teis para se colocar duas coisas na mesma linha
+\begin{minipage}[b]{0.45\linewidth}
+\begin{center}
+\[
+ax^2 + bx + c = 0
+\]
+\end{center}
+\caption{EquaÁ„o de segundo grau}
+\label{Tab:equacaoflutuante}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.50\linewidth}
+\begin{center}
+\[
+x = \frac{-b\pm\sqrt{b^2-4ac}}{2a}
+\]
+\end{center}
+\caption{RaÌzes da equaÁ„o da tabela~\ref{Tab:equacaoflutuante}}
+\label{Tab:equacaoflutuante2}
+\end{minipage}
+\end{table}
+
+… importante ressaltar que o que é numerado é o \texttt{caption} e não
+a \texttt{figure} ou a \texttt{table}. Portanto, o \texttt{label} deve
+ser colocado sempre após o \texttt{caption} ao qual ele se
+refere. Conforme ilustram as tabelas \ref{Tab:equacaoflutuante} e
+\ref{Tab:equacaoflutuante2}, uma mesma \texttt{figure} ou
+\texttt{table} pode ter mais de um ou nenhum \texttt{caption}.
+O \texttt{caption} pode ser colocado antes do conte˙do flutuante, como
+na figura \ref{Fig:textoflutuante}, ou depois, como nas tabelas
+\ref{Tab:equacaoflutuante} e \ref{Tab:equacaoflutuante2}. 
+
+Em cada \verb|\begin{figure}| ou \verb|\begin{table}| pode-se incluir
+um par‚metro opcional com as opÁıes de posicionamento para este
+elemento flutuante. Par‚metros adicionais de comandos \LaTeX\ s„o
+sempre fornecidos entre colchetes \texttt{[]}, enquanto os parâmetros
+obrigatórios aparecem entre chaves \verb|{}|. As opções disponíveis
+incluem as seguintes:
+\begin{itemize}
+\item[\tt h] O elemento pode ser posicionado na mesma posição em que ele
+aparece no código fonte do texto.
+\item[\tt t] O elemento pode ser posicionado no topo de uma página.
+\item[\tt b] O elemento pode ser posicionado no fim de uma página.
+\item[\tt p] O elemento pode ser incluído em uma página formada só por
+flutuantes.
+\end{itemize}
+
+\section{Tabelas em \LaTeX}
+\label{Sec:tabelas}
+
+Tabelas são construídas com comandos próprios do \LaTeX, notadamente o
+ambiente \texttt{tabular}. Nada obriga a que o ambiente
+\texttt{tabular} esteja sempre posicionado em um elemento
+flutuante. Se você quiser impor que uma tabela fique obrigatoriamente
+em uma determinada posição do texto, basta não colocar o
+\texttt{tabular} dentro de um \texttt{table}. Tabelas podem até ser
+incluídas no meio de uma frase.  Por exemplo, eu posso dizer que se um
+jogo da velha est· na configuraÁ„o \textsf{\tiny\begin{tabular}{c|c|c}
+x & & x \\ \hline & & o \\ \hline x & o & \end{tabular}} e se o
+jogador ``\textsf{x}'' sabe jogar, então o jogador ``\textsf{o}'' ir·
+perder, independentemente da jogada que faça.
+
+ Exemplos de
+colunas com diferentes larguras e alinhamentos podem ser vistos na
+tabela \ref{Tab:larguracolunas}.
+
+\begin{table}[htbp]
+\begin{tabularx}{\linewidth}{|p{3cm}|X|l|} \hline
+COLUNA p & COLUNA X & COLUNA l \\ \hline
+Largura fixa (n„o depende do conte˙do) &
+ExpandÌvel &
+Ajust·vel \\ \hline
+Alinhada no topo &
+Alinhada ‡ esquerda &
+Alinhada ‡ esquerda \\ \hline
+\end{tabularx}
+\\[0.5cm]
+\begin{tabularx}{\linewidth}{|b{3cm}|C|r|} \hline
+COLUNA b & COLUNA C (ver \texttt{comandos.tex}) & COLUNA r \\ \hline
+Largura fixa (n„o depende do conte˙do) &
+ExpandÌvel &
+Ajust·vel \\ \hline
+Alinhada na base &
+Centralizada &
+Alinhada ‡ direita \\ \hline
+\end{tabularx} 
+\caption{Tabelas com colunas de diferentes larguras e alinhamentos}
+\label{Tab:larguracolunas}
+\end{table}
+
+\section{Figuras em \LaTeX}
+\label{Sec:figuras}
+
+As figuras (imagens, desenhos, gráficos, etc.) devem ser produzidas
+por ferramentas externas ao \LaTeX, salvas em um arquivo e inseridas
+no texto usando o comando \texttt{includegraphics}. Da mesma forma
+que as tabelas, as figuras podem ser flutuantes, caso sejam
+inseridas dentro de um ambiente \texttt{figure}, ou ter uma posição
+fixa no texto (como aqui: \includegraphics{figuras/eu}).
+
+O formato em que você deve salvar os arquivos das figuras para que
+possa incluí-las no texto depende de como você pretende compilar
+o código fonte:
+\begin{itemize}
+\item se o texto vai ser compilado com \texttt{latex}, todos os
+arquivos devem estar no formato EPS (\emph{Encapsulated PostScipt});
+\item se o texto vai ser compilado com \texttt{pdflatex}, os
+arquivos devem estar nos formatos PDF ou JPEG (outros formatos s„o
+aceitos, mas estes s„o os recomend·veis).
+\end{itemize}
+
+A figura \ref{Fig:belmonte} mostra um exemplo de inclusão de uma
+imagem no texto \LaTeX.
+
+\begin{figure}[htbp!] \begin{center}
+% fbox faz uma borda ao redor do seu argumento
+\fbox{\includegraphics[width=0.75\linewidth]{figuras/belmonte}}
+\caption{Exemplo de imagem real}
+\label{Fig:belmonte}
+\end{center} \end{figure}
+

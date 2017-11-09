@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: principal.aux
+A level-1 auxiliary file: rosto.aux
+A level-1 auxiliary file: 01_introducao/introducao.aux
+A level-1 auxiliary file: 02_desenvolvimento/desenvolvimento.aux
+A level-1 auxiliary file: 03_conclusao/conclusao.aux
+The style file: dcu.bst
+Database file #1: bibliografia.bib
+Warning--entry type for "Bernardete" isn't style-file defined
+--line 23 of file bibliografia.bib
+Warning--empty author in art-solimaes03
+You've used 2 entries,
+            2921 wiz_defined-function locations,
+            653 strings with 5139 characters,
+and the built_in function-call counts, 7202 in all, are:
+= -- 1227
+> -- 47
+< -- 0
++ -- 560
+- -- 14
+* -- 626
+:= -- 1398
+add.period$ -- 4
+call.type$ -- 2
+change.case$ -- 22
+chr.to.int$ -- 2
+cite$ -- 3
+duplicate$ -- 26
+empty$ -- 56
+format.name$ -- 20
+if$ -- 1320
+int.to.chr$ -- 5
+int.to.str$ -- 0
+missing$ -- 1
+newline$ -- 12
+num.names$ -- 10
+pop$ -- 10
+preamble$ -- 1
+purify$ -- 25
+quote$ -- 0
+skip$ -- 24
+stack$ -- 0
+substring$ -- 1698
+swap$ -- 9
+text.length$ -- 18
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 8
+warning$ -- 1
+while$ -- 26
+width$ -- 0
+write$ -- 27
+(There were 2 warnings)

@@ -1,0 +1,83 @@
+% newcommand define novos comandos, que podem passar a ser usados da
+% mesma forma que os comandos LaTeX de base.
+
+% Configuração da fonte
+%\renewcommand{\familydefault}{\sfdefault}
+
+% Margens ----------------------------------------------------------------------
+%\setlength{\oddsidemargin}{3.5cm}
+%\setlength{\evensidemargin}{2.5cm}
+%\setlength{\textwidth}{15cm}
+%\addtolength{\oddsidemargin}{-1in}
+%\addtolength{\evensidemargin}{-1in}
+%%
+%\setlength{\topmargin}{2.0cm}
+%\setlength{\headheight}{1.0cm}
+%\setlength{\headsep}{1.0cm}
+%\setlength{\textheight}{22.7cm}
+%\setlength{\footskip}{1.0cm}
+%\addtolength{\topmargin}{-1in}
+
+% Capítulos --------------------------------------------------------------------
+% Não aparecer o número na primeira página dos capítulos
+\newcommand{\mychapter}[1]{\chapter{#1}\thispagestyle{empty}}
+\newcommand{\mychapterstar}[1]{\chapter*{#1}\thispagestyle{empty}}
+
+% Os capítulos sem nœmero
+%\newcommand{\mychapterast}[1]{\chapter*{#1}\thispagestyle{empty}
+%\chaptermark{#1}
+%\afterpage{\markboth{\uppercase{#1}}{\rightmark}}
+%\markboth{\uppercase{#1}}{}
+%}
+
+%Referencias
+%\newcommand{\BibTeX}{\textsc{B\hspace{-0.1em}i\hspace{-0.1em}b\hspace{-0.3em}}\TeX}
+
+% Comandos matemáticos ---------------------------------------------------------
+% Implicação em fórmulas
+%\newcommand{\implica}{\quad\Rightarrow\quad} %Meio de linha
+%\newcommand{\implicafim}{\quad\Rightarrow}   %Fim de linha
+%\newcommand{\tende}{\rightarrow}
+
+% Fração com parenteses
+%\newcommand{\pfrac}[2]{\parent{\frac{#1}{#2}}}
+
+% Transformada de Laplace e transformada Z
+%\newcommand{\lapl}{\pounds}
+%\newcommand{\transfz}{\mathcal{Z}}
+
+% Sequências
+%\newcommand{\sequencia}[4]{$#1_{#2}$, $#1_{#3}$, \ldots, $#1_{#4}$}
+
+% Seções sem número
+%\newcommand{\mysectionast}[1]{\section*{#1}
+%\addcontentsline{toc}{section}{#1}
+%\markright{\uppercase{#1}}
+%}
+
+% No tabularx, as celulas devem ser centradas verticalmente
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+
+% Células centralizadas horizontalmente no tabularx
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+
+% Outros ----------------------------------------------------------------------
+%\newcommand{\chave}[1]{\left\{#1\right\}}
+%\newcommand{\colchete}[1]{\left[#1\right]}
+%\newcommand{\parent}[1]{\left(#1\right)}
+
+%%subsubsection
+%\newcounter{subcount}
+%\newenvironment{mysub}
+%{\begin{list}
+%{\textbf{\thesubsubsection.\arabic{subcount}}}
+%{\setlength{\itemindent}{2.2em}
+%\setlength{\rightmargin}{.6in}
+%\setlength{\labelwidth}{1in}
+%\setlength{\labelsep}{.2in}
+%\setlength{\parsep}{.5ex plus .2ex minus .1ex}
+%\setlength{\itemsep}{0ex plus .2ex minus 0ex}
+%\usecounter{subcount}}
+%}
+

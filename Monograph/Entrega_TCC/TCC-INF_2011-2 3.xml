@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<documento>
+	<titulo>Acelerando Operações Filogenéticas Usando Programação Paralela</titulo>
+	<autores>
+		<autor>Thiago Pereira Maia dos Santos</autor>
+		<autor>Welligton Santos Martins</autor>
+		<autor>Nome do coorientador (se houver)</autor>
+	</autores>
+	<palavras-chaves>
+		<palavra-chave>Computação Paralela</palavra-chave>
+		<palavra-chave>GPU</palavra-chave>
+		<palavra-chave>CUDA</palavra-chave>
+		<palavra-chave>Filogenia</palavra-chave>
+		<palavra-chave>Árvore Filogenética</palavra-chave>
+	</palavras-chaves>
+	<resumo> 
+		A mescla entre um grande poder computacional e procedimentos eficazes, possibilitou a simulação de análises filogenéticas baseadas em um grande número de árvores, com o intuito de possibilitar a reconstrução e/ou atualização da árvore da vida. Trabalhos anteriores possibilitou essas simulações com um número grande de árvores filogenéticas, abrindo então a possibilidade de lidar com grandes conjuntos de dados em análises evolucionárias. Todavia, apenas a possibilidade de se trabalhar com um grande volume de dados não é suficiente para facilitar as análises feitas pelos biólogos, é também de suma importância haver cálculos de coeficientes estatísticos, possibilitando assim uma verificação de correlação evolutiva de uma determinada característica da espécies. Neste trabalho, apresentamos uma implementação altamente paralela e eficiente para o cálculo estatístico I de Moran, assim também como outros cálculos e funções não paralelas bastante eficientes. O uso da computação em GPUs e de um número elevado de threads, resultou em ganhos de desempenho de até 380 vezes quando comparado a uma implementação sequencial dos mesmos procedimentos. Nossos resultados gera a possibilidade de lidar com uma massa de dados grande e promove um índice que meÃ§a a quantidade de incerteza filogenética presente em árvores incompletas, facilitando assim análises evolucionárias.
+	</resumo>
+	<contribuicoes>
+		Evandro Taquary
+	</contribuicoes>
+	<data>
+		<dia>04</dia>
+		<mes>Julho</mes>
+		<ano>2017</ano>
+	</data>
+	<tipo>Trabalho de Conclusão de Curso</tipo>
+	<formato>PDF</formato>
+	<identificador>TCC-INF_2017-1 (exemplo: TCC-INF_2011-2)</identificador>
+	<url>TCC-INF_2017-1.pdf</url>
+	<idioma>Português</idioma>
+	<direitos>Este trabalho pode ser usado irrestritamente, desde que sejam dados os devidos créditos aos seus autores</direitos>
+</documento>

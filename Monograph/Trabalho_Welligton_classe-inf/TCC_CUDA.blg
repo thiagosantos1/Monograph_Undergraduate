@@ -1,0 +1,59 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: TCC_CUDA.aux
+The style file: inf-ufg.bst
+Illegal, another \bibstyle command---line 173 of file TCC_CUDA.aux
+ : \bibstyle
+ :          {plain}
+I'm skipping whatever remains of this command
+Database file #1: ./bib/tese_ref.bib.bib
+Repeated entry---line 70 of file ./bib/tese_ref.bib.bib
+ : @article{analy_SIMD_MIMD
+ :                         ,
+I'm skipping whatever remains of this entry
+"}" immediately follows an entry type---line 72 of file ./bib/tese_ref.bib.bib
+ :   author       = {Sartaj Sahni {\href{sahni@cis.ufl.edu
+ :                                                        }{Sahni}}},
+I'm skipping whatever remains of this entry
+You've used 20 entries,
+            2158 wiz_defined-function locations,
+            617 strings with 6987 characters,
+and the built_in function-call counts, 4591 in all, are:
+= -- 430
+> -- 140
+< -- 0
++ -- 60
+- -- 40
+* -- 292
+:= -- 837
+add.period$ -- 60
+call.type$ -- 20
+change.case$ -- 75
+chr.to.int$ -- 0
+cite$ -- 20
+duplicate$ -- 230
+empty$ -- 414
+format.name$ -- 40
+if$ -- 905
+int.to.chr$ -- 0
+int.to.str$ -- 20
+missing$ -- 19
+newline$ -- 103
+num.names$ -- 40
+pop$ -- 39
+preamble$ -- 1
+purify$ -- 60
+quote$ -- 0
+skip$ -- 102
+stack$ -- 0
+substring$ -- 229
+swap$ -- 49
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 70
+warning$ -- 0
+while$ -- 58
+width$ -- 22
+write$ -- 216
+(There were 3 error messages)

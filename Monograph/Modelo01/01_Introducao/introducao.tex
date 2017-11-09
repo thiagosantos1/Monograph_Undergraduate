@@ -1,0 +1,44 @@
+%%
+%% CapÌtulo 1: Modelo de CapÌtulo
+%%
+
+% Est· sendo usando o comando \mychapter, que foi definido no arquivo
+% comandos.tex. Este comando \mychapter È essencialmente o mesmo que o
+% comando \chapter, com a diferenÁa que acrescenta um \thispagestyle{empty}
+% apÛs o \chapter. Isto È necess·rio para corrigir um erro de LaTeX, que
+% coloca um n˙mero de p·gina no rodapÈ de todas as p·ginas iniciais dos
+% capÌtulos, mesmo quando o estilo de numeraÁ„o escolhido È outro.
+\mychapter{Introdução}
+\label{Cap:introducao}
+
+%O que escrever
+A introdução deverá ser escrita depois do desenvolvimento do trabalho. Nela deve conter a explicação do que será abordado no trabalho e se necessário um histórico da necessidade do conteúdo. Aqui é importante colocar citação direta onde se pode dizer que Segundo \citeasnoun{Bernardete} e ainda escrever seu próprio texto através da leitura de outros trabalhos e fazer uma citação indireta \cite{Bernardete}. Não é muito interessante colocar figuras aqui na introdução embora não seja proibido. Procure escrever de forma resumida, mas faça valer ao leitor o que de importante ele encontrará na leitura, ou seja, aqui deve-se "vender o peixe" do trabalho.
+
+%Sobre esse trabalho
+Descreva o máximo do que se trata o trabalho e sua importância.
+
+\section{Motivação}
+\label{Sec:Motivação}
+%Motivação
+Explique aqui porque iniciou as pesquisas no tema e qual a motivação de desenvolver esse trabalho.
+
+\section{Objetivo}
+\label{Sec:Objetivo}
+%Objetivo
+Descreva o objetivo principal do trabalho. Tente criar um parágrafo resumindo o que seu trabalho fará. Depois seja mais específico, pode inclusive criar tópicos para a Seção \ref{Sec:ObjetivoEspecifico}.
+
+\subsection{Objetivo específico}
+\label{Sec:ObjetivoEspecifico}
+\begin{itemize}
+  \item Criar uma ferramenta que ... ;
+  \item Criar ... ;
+\end{itemize}
+
+
+
+\section{Organização do trabalho}
+\label{Sec:Organização}
+%Organização do trabalho   
+Sempre que precisar referenciar outra parte de seu trabalho use o comando \\ref apontando para o que você colocou no \\label como por exemplo essa Seção \ref{Sec:Organização}. Aqui você deverá informar como e porque seu trabalho foi organizado, informando o que será abordado em cada capítulo.
+
+

@@ -1,0 +1,2 @@
+
+nvcc -arch sm_12 newick_gpu.cu -o newick_gpu

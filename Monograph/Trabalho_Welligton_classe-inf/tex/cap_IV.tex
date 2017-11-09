@@ -1,0 +1,107 @@
+\chapter{Resultados}
+\label{cap:Análise de Resultados}
+
+
+Como descrito em capítulos anteriores, foi criado um algoritmo paralelo para a execução do cálculo de I de Moran. Todavia, para fins de comparação, usaremos também uma versão sequencial em nossos testes para fins de comparação e análise de desempenho. Para realizar os cálculos de I de Moran, usaremos 3 árvores:
+\begin{itemize}
+   \item Dummy 160: Grupo de espécies artificiais, em uma filogenia completamente balanceada, com 160 espécies no total onde 32 delas são novas espécies(PUTs).
+   \item Dummy 400: Grupo de espécies artificiais e também completamente balanceada, com 400 espécies no total onde 272 são novas espécies.
+	\item Hummingbirds: Contém uma filogenia com 304 espécies, onde 158 são novas espécies a serem inseridas.
+
+ \end{itemize}
+ 
+Os experimentos foram realizados diversas vezes, no mínimo 10, onde foi extraído então a média dos tempos de execução. Para realizar os cálculos, realizamos simulações para gerar 128,1024,4096 e 8192 árvores filogenéticas.
+ 
+Para a realização dos experimentos, utilizamos um Intel Xeon E5 core i7, NVIDIA GeForce GTX Titan Black, com sistema operacional CentOS 6. A Titan Black possui 2880 núcleos CUDA com memory clock de 7.0 Gbps com 6 GB de memória global do tipo GDDR5. O programa foram implementados em C++ e CUDA C/C++.
+
+
+\section{Cálculo de I de Moran}
+\label{moran}
+
+ 
+Antes de realizar o cálculo de I de Moran, é necessário realizar alguns passos, como por exemplo transferir os dados da memória principal para a GPU. Nessa etapa, uma cópia da árvore e enviada várias vezes a GPU. Para a realização do cálculo, criamos um Kernel que possui 1 bloco por árvore a ser replicada, ou seja, cada bloca será responsável por calcular o I de Moran daquela árvore em específico. Além disso, cada bloco irá trabalhar com  um número de threads igual ao número de folhas, pois é a quantidade certa de espécies a serem calculado o I de Moran. É possível perceber nas tabelas e nos gráficos, que foi possível conseguir ótimos resultados de desempenho e speedup, chegando a ser mais de 300x mais rápido quando comparado a versão sequencial, como pode ser observado na figura 5.3. É possível perceber também que a medida que  a quantidade de árvore a serem simuladas vão aumentando, o speedup vai melhorando.
+
+
+\begin{table}
+	\centering
+	\caption{Tempo de execução I de Moran para 128 árvores}
+	\begin{tabular}{|c|c|c|}
+	\hline	
+	Espécies  & Sequêncial	& Paralelo \\ \hline
+	Dummy160		& 0,26	& 0,0013 \\	\hline
+	Dummy400		& 1,84	& 0,004 \\	\hline
+	Hummingbirds		& 1,14	& 0,005 \\	\hline
+	\end{tabular}
+	\label{Tabela-Moran-128}
+\end{table}
+
+
+\begin{table}
+	\centering
+	\caption{Tempo de execução I de Moran para 1024 árvores}
+	\begin{tabular}{|c|c|c|}
+	\hline	
+	Espécies  & Sequêncial	& Paralelo \\ \hline
+	Dummy160		& 2,55	& 0,0095 \\	\hline
+	Dummy400		& 17,60	& 0,08 \\	\hline
+	Hummingbirds		& 9,55	& 0,064 \\	\hline
+	\end{tabular}
+	\label{Tabela-Moran-1024}
+\end{table}
+
+
+\begin{table}
+	\centering
+	\caption{Tempo de execução I de Moran para 4096 árvores}
+	\begin{tabular}{|c|c|c|}
+	\hline	
+	Espécies  & Sequêncial	& Paralelo \\ \hline
+	Dummy160		& 8,2	& 0,0363 \\	\hline
+	Dummy400		& 100,35 	& 0,26 \\	\hline
+	Hummingbirds		& 28,88	& 0,42 \\	\hline
+	\end{tabular}
+	\label{Tabela-Moran-4096}
+\end{table}
+
+
+
+\begin{table}
+	\centering
+	\caption{Tempo de execução I de Moran para 8192 árvores}
+	\begin{tabular}{|c|c|c|}
+	\hline	
+	Espécies  & Sequêncial	& Paralelo \\ \hline
+	Dummy160		& 21,12	& 0,072 \\	\hline
+	Dummy400		& 303,50 	& 0,789 \\	\hline
+	Hummingbirds		& 75,40	& 1,02 \\	\hline
+	\end{tabular}
+	\label{Tabela-Moran-8192}
+\end{table}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=1.0]{./fig/grafico_128}
+	\caption{Speedup para 128 ávores}
+	\label{fig:Gráfico 128 árvores}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=1.0]{./fig/grafico_1024}
+	\caption{Speedup para 1024 ávores}
+	\label{fig:Gráfico 1024 árvores}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=1.0]{./fig/grafico_4096}
+	\caption{Speedup para 4096 ávores}
+	\label{fig:Gráfico 4096 árvores}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=1.0]{./fig/grafico_8192}
+	\caption{Speedup para 8192 ávores}
+	\label{fig:Gráfico 8192 árvores}
+\end{figure}

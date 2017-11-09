@@ -1,0 +1,92 @@
+\chapter{Proposta de Implementação}
+\label{cap:implement}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+O problema de filogenia é complexo e exige um alto custo computacional. Com isso, temos que desenvolver uma solução eficaz e eficiente, que realize todos os passos computacionais necessários no menor tempo possível, sempre mantendo a qualidade e persistência dos dados e dos resultados. Para a criação da solução, o problema foi dividido em quatro partes, todavia, como dito anteriormente eu entrei no meio do projeto e participei então de apenas duas das quatro etapas, pré-processamento e cálculo de I de Moran. 
+
+\begin{itemize}
+   \item Pré-Processamento: Um biólogo nos disponibiliza uma árvore (arquivo formato Newick). A partir desse arquivo, iremos ler, validar, e gerar vetores com todas as informações necessárias para fazer o processamento em paralelo. 
+   \item Inserção de espécies e geração de árvores(réplicas): Essa etapa consiste na inserção de espécies novas, as quais não se tem muitas informações, sob uma árvore já conhecida. Tal inserção se deve a partir do arquivo put, que contém todas as novas espécies que devem ser inseridas em alguma sub árvore. É gerado então variações/réplicas das árvores, mudando sempre, aleatoriamente, o local de inserção da nova espécie naquela sub árvore, a partir do seu MDCC. 
+	\item Cálculo de matriz de distância: Nessa parte da solução, é calculado a matriz de distância evolutiva, isto é, a matriz contendo as distâncias entre todos os pares de espécies, para cada árvore construida no passo de inserção de espécies. As matrizes de distância são base para extrair informações estatísticas sobre filogenia.
+	\item Cálculo I de Moran: O índice I de Moran é um índice geral para medir autocorrelação. Ele é uma extensão de Pearson Coeficiente de correlação produto-momento para uma série univariável (Moran - Autocorrelation Coefficient in Comparative Methods). Para realizar esse cálculo é necessário ter a matriz de distância, pois ela é usada como base. Sendo assim, para cada matriz de distância se tem um valor de índice de correção por classe de distância.
+ \end{itemize}
+ 
+ \section{Pré-processamento}
+ \label{processamento}
+ 
+Toda a estrutura de resolução do problema, como vamos tratar o problema, qual abordagem iremos seguir, começa no pré-processamento. Essa etapa é fundamental para obtermos uma boa paralelização, pois é aqui que preparamos os dados de entrada em uma estrutura adequada e pensada, para uma futura manipulação dos dados na GPU. No pré-processamento, temos que a entrada de dados é composta por:
+
+\begin{itemize}
+   \item Uma árvore filogenética, mundialmente conhecida pelos biólogos como Newick. 
+   \item PUT (phylogenetically uncertain taxa), é o arquivo que contém todas as espécies desconhecidas e faltantes na árvore Newick. 
+	\item Traits. Representa as características das espécies, tanto as que já estão no Newick como as do PUT. Essas características são usadas no cálculo de I de Moran.
+ \end{itemize}
+ 
+Todo o conjunto de dados(Newick, PUT e Traits) devem ser lidos por uma função, e tratados da melhor forma possível, como dito anteriormente. Para isso, fazermos a realização do parsing. No ambiente de computação, temos que o parsing é o processo de analisar uma sequência de entrada para, posteriormente, ser representado em outro formato, o qual melhor atende a aplicação. No parsing, todos os arquivos de entrada são carregados e mapeados em uma estrutura definida por nós, que é apropriada para usarmos na computação paralela. 
+
+Para um melhor entendimento, usaremos em nossos exemplos um modelo de árvore simplificada, que está representada a partir do formato Newick. Usaremos então uma árvore pequena, pois assim conseguimos demonstrar melhor, de uma forma real, como é estruturado a árvore na nossa aplicação, após o parsing.
+
+Nós escrevemos um parsing em C++, assim como todo o resto da aplicação. O código faz a leitura de todos os arquivos de entrada e realiza o devido processamento. No caso do Newick, a leitura é feita linha por linha e então colocada em uma estrutura interna, um array de String, isso facilita o manipulamento futuro. Na manipulação, fizemos uma leitura pós-ordem reversa e processamos a árvore da forma como ele se apresenta no formato Newick. Isso facilita tanto na manipulação, quanto na organização.	Por exemplo, no arquivo exemplo temos uma sequência A, B, C, D, E, F, G, H, I, J e K; Isso significa que os filhos sempre são lidos antes dos pais e a raiz sempre será a última a ser lida e processada. Para realizar esse processamento pós-ordem, utilizamos a técnica de expressão regular(regex em C++), pois assim conseguirmos retirar uma parte específica da árvore, sem modificar sua estrutura. Esse processo fica mais evidenciado no algoritmo 3.1 
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=1.0]{./fig/algoritimo_parse}
+	\label{fig:Algoritimo Parse}
+\end{figure}
+
+
+Ao sair do parsing, temos uma estrutura de vetores, pois achamos essa a melhor ideia, devido favorecer o acesso aglutinado a memória. Sendo assim, cada vetor terá partes das informações sobre a árvore. Por exemplo, um vetor terá a informação dos nomes dos nós, outra vetor o comprimento dos ramos, sobre o pai de cada nó, seus dois sucessores, etc. Outra informação importante e que armazenamos em um vetor separado, são os dados referentes a característica da espécie. Isso facilitará quando for feito o cálculo de I de Moran. Observe a figura 3.1 onde é mostrado como as informações ficariam organizadas em vetores separados. Além disso, observe que fizemos uma separação no vetor, para facilitar o entendimento e uso. Os ancestrais nós armazenamos nos índices mais baixos do vetor e informações sobre os ancestrais nos índices mais altos do vetor, sendo a raiz o último elemento do vetor. Dessa forma, através de uma simples comparação do índice do vetor com o número espécies determinamos se o elemento é uma espécie ou um ancestral.
+ 
+Podemos ver, através da figura 3.1, que as espécies A, B, D, F, G e H foram mapeadas para as seis primeiras posições do vetor que representa a árvore (espécies iniciais). Já, os ancestrais K, E, C, J e I foram mapeados para as últimas 5 posições (ancestrais iniciais). Observe que utilizamos o valor ``-2``, no vetor ``filho esquerda`` e ``filho direita``, para indicar que o nó não tem filhos, se o valor for ``-1`` (vetor pai) indica que este é o nó raiz, que não tem pai (ancestral). \cite{dissert_elias}
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.3]{./fig/vectors}
+	\caption{Estrutura para representação dos dados \cite{dissert_elias}}
+	\label{fig:representação dos dados}
+\end{figure}
+Observe que alguns espaços são reservadas para as novas espécies a serem incluídas. Essas espécies são armazenadas nas posições seguintes as espécies originais da árvore (Figura 3.1, posições 6 e 7), visualizada na estrutura como novas espécies. Posições correspondentes são reservadas para os novos ancestrais (Figura 3.1, posições 9 e 10), na metade superior do vetor, ao lado dos ancestrais originais da árvore, chamado novos ancestrais. Essa pré-alocação de memória é possível devido a leitura anterior dos arquivos (Newick + PUTs), que nos permite saber a quantidade de espécies a árvore terá. Ou seja, sabendo que a árvore é binária e conhecendo o total de espécies, o total de ancestrais será 1 (um) a menos que o total de espécies, então o tamanho do vetor será 2 vezes a quantidade de espécies menos 1. Entretanto, em nossa solução, mantivemos esta posição a mais para identificação da árvore.\cite{dissert_elias}
+
+Observamos que existe correspondência entre os dados dos vetores, ou seja, se o vetor espécie na posição 2 contém a espécie D, então os outros vetores possuem as informações sobre a espécie D na posição correspondente. Assim, o pai de D está na posição 14 (E), o comprimento do ramo que relaciona D ao seu antecessor é 2, a característica a ser avaliada durante o cálculo do I de Moran vale 6.0 e esse nó não possui filhos, ou seja, é um nó folha - o que pode ser observado pelo valor negativo ``2``, nos vetores ``filho esquerda`` e ``filho direita``. \cite{dissert_elias}
+
+
+
+
+\section{Inserção de espécies}
+\label{especies}
+
+A parte de inserção 	eu não participei em nenhum momento, ficando sob responsabilidade do outro integrante do trabalho, Evandro. De forma resumida, temos que a inserção consiste em receber as estruturas de dados as árvores a inserir em posições aleatórias. Entretanto, tais pontos não são totalmente aleatórios, pois existe um ancestral de consenso (MDCC). Nesse caso, sabemos a sub árvore onde deve ser inserido aquela nova espécie em específico. As simulações construídas chegam a gerar milhares de réplicas de forma concorrente. Para mais detalhes, os quais não tenho total conhecimento, basta ler o artigo dos autores Evandro e Elias. \cite{dissert_elias}
+
+
+\section{Cálculo de matriz de distância}
+\label{matriz}
+
+Assim como a etapa anterior, eu não participei em nenhum momento da parte do cálculo de matriz de distância. Sendo assim, não posso dar muitos detalhes sobre a implementação e abordagem utilizada pelo Evandro. Resumidamente, nessa etapa temos que é calculado a similaridade filogenética entre todos os pares de espécies. Sendo n espécies, então a matriz de distância possui tamanho n X n. Temos que a matriz é simétrica, sendo assim, não é necessário calcular toda a matriz, apenas a metade dos elemento - a diagonal, pois a mesma é trivial, com todos os valores iguais a zero. Para o cálculo é preciso somar todos os comprimentos de ramos que conectam duas espécies. Sendo assim, precisamos sempre encontrar o ancestral comum mais baixo entre os dois elementos a serem cálculados. Para mais detalhes, os quais não tenho total conhecimento, basta ler o artigo dos autores Evandro e Elias. \cite{dissert_elias}
+
+\section{Cálculo de I de Moran}
+\label{moran}
+
+Sabemos que geralmente, o I de Moran é aplicado sobre classes de distância relacionadas no tempo, ou seja, iremos comparar características de espécies que estão a uma mesma faixa de distância no tempo. Para isso, os biólogos definem as classes de distância, de forma mais aleatória possível. Para se ter uma melhor análise e resultados, são definidas poucas faixas de distâncias. Em nossa solução, usaremos 4 classes de distância. As faixas entre elas é definida de forma automática, pois usamos a diferença entre o maior e menor valor de distância de matriz.
+
+	Em nossa solução, criamos um kernel que aloca uma árvore para cada bloco, deixando todas as threads do bloco trabalhando no cálculo do I de Moran para aquela árvore específica. Para isso, para cada bloco são lançadas quantas threads forem o total de espécies. Assim, cada thread do bloco trabalha em uma área exclusiva de valores da matriz de distância. O kernel é lançado uma única vez, gerando b blocos e t threads, podendo gerar milhões de threads, conforme o tamanho da árvore.
+
+	Antes de executar o algoritmo paralelo, é feito o cálculo para obter a média das características, o valor da variância, e também uma cópia do vetor de matriz, retirando os elementos que não farão parte do cálculo de I de Moran. O algoritmo paralelo tem os seguintes passos: 
+
+\begin{enumerate}
+   \item Cada thread verifica se as distâncias pertencem a aquela classe de distância (estamos usando 1-4). 
+   \item Caso afirmativo, acumulam o produto da diferença entre a característica de cada espécie e a média. 
+	\item Quando cada thread concluir os passos anteriores, temos que uma área da matriz foi verificada. O valor calculado até aqui é então acumulado, atomicamente, em uma variável compartilhada. Embora há um gasto computacional e de tempo para executar essa soma atomicamente, é de suma importância, pois várias threads podem concorrer pela variável compartilhada.
+	\item Após a execução dos passos anteriores, a thread então fica no aguardo das outras, devido a uma barreira de sincronização.
+	\item Quando todas concluírem, é então calculado o I de Moran daquela árvore, para aquela classe de distância.
+	\item Todos os passos anteriores são repetidos até a conclusão de todas as classes de distância.
+ \end{enumerate}
+
+
+Ao final do processo anterior, cada classe de distância terá seu Índice de Moran. Todavia cada árvore gera seu próprio Moran, ou seja, teremos milhares  de árvore e consequentemente de índices calculados. Para resolver esse problema, é calculado a média do Índice de Moran, por classe. Veja o algoritmo 3.2 para um melhor entendimento do processo paralelo.
+
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=1.0]{./fig/algoritimo_moran}
+	\label{fig:Algoritimo Moran}
+\end{figure}
+

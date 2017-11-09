@@ -1,0 +1,134 @@
+\begin{thebibliography}{10}
+
+\bibitem{reading_tree}
+{\sffamily\scshape Baum, D.}
+\newblock {\bfseries
+  \href{https://www.nature.com/scitable/topicpage/reading-a-phylogenetic-tree-the-meaning-of-41956}
+  {Reading a Phylogenetic Tree: The Meaning of Monophyletic Groups}}.
+\newblock preprint, 2008.
+
+\bibitem{phylogenetc_protocol}
+{\sffamily\scshape Baum, D.}
+\newblock {\bfseries
+  \href{http://bcrc.bio.umass.edu/intro/content/phylogeneticsmorphology-protocol}
+  {Phylogenetics:Morphology Protocol}}.
+\newblock preprint, 2011.
+
+\bibitem{BlaiseLab}
+{\sffamily\scshape Blaise,
+  {\href{http://www.math.washington.edu/~babson/}{Blaise Barney}}.}
+\newblock {\bfseries
+  \href{https://computing.llnl.gov/tutorials/parallel_comp/#Abstract}
+  {Introduction to Parallel Computing}}.
+\newblock preprint, 2016.
+
+\bibitem{dissert_elias}
+{\sffamily\scshape {\href{elias_batias@gmail.com}{Elias}}, E.~B.}
+\newblock {\bfseries \href{https://www.inf.ufg.br} {Processamento Paralelo
+  Aplicado a Metodos Filogeneticos Comparativos}}.
+\newblock {\itshape Instituto de Informática UFG}, 1:1--8, 2012.
+
+\bibitem{phylogenies_comparative}
+{\sffamily\scshape Felsenstein, J.}
+\newblock {\bfseries {Phylogenies and the Comparative Method}}.
+\newblock {\itshape The American Naturalist}, 1:120--126, 1985.
+
+\bibitem{comparative_methods}
+{\sffamily\scshape Goolsby, E.}
+\newblock {\bfseries
+  \href{https://academic.oup.com/sysbio/article/64/4/568/1647410/Phylogenetic-Comparative-Methods-for-Evaluating}
+  {Article Navigation Phylogenetic Comparative Methods for Evaluating the
+  Evolutionary History of Function-Valued Traits}}.
+\newblock {\itshape Systematic Biology}, 1:2--6, 2015.
+
+\bibitem{HistCPU}
+{\sffamily\scshape Henk,
+  {\href{https://twitter.com/HenkPoley/status/432824030253420545/}{Henk
+  Poley}}.}
+\newblock {\bfseries
+  \href{http://preshing.com/20120208/a-look-back-at-single-threaded-cpu-performance/}
+  {A Look Back at Single-Threaded CPU Performance}}.
+\newblock preprint, 2012.
+
+\bibitem{molecular_evolution}
+{\sffamily\scshape Hills, D.}
+\newblock {\bfseries
+  \href{http://www.journals.uchicago.edu/doi/pdfplus/10.1086/417338} {Ribosomal
+  DNA: Molecular Evolution and Phylogenetic Inference}}.
+\newblock {\itshape Biology Journal}, 3:2--7, 2012.
+
+\bibitem{disser_PAM}
+{\sffamily\scshape
+  {\href{https://scholar.google.com/citations?user=EHbuZpYAAAAJ}{Thiago}},
+  T.~F.}
+\newblock {\bfseries {PAM - Phylogenetic Analysis in Macroecology }}.
+\newblock {\itshape UFG}, 9:1--3, 2012.
+
+\bibitem{Phylogenetic_Uncertainty}
+{\sffamily\scshape
+  {\href{https://scholar.google.com/citations?user=EHbuZpYAAAAJ}{Thiago}},
+  T.~F.}
+\newblock {\bfseries {Phylogenetic Uncertainty in Macroecological Analyses }}.
+\newblock {\itshape American Naturalist}, 1:2--8, 2012.
+
+\bibitem{newick_format}
+{\sffamily\scshape John.}
+\newblock {\bfseries
+  \href{http://evolution.genetics.washington.edu/phylip/newicktree.html} {The
+  Newick tree format}}.
+\newblock preprint, 2011.
+
+\bibitem{Phylogenetic_tree}
+{\sffamily\scshape John.}
+\newblock {\bfseries Phylogenetic tree}.
+\newblock Enclyclopedia Britannica, England, 2012.
+
+\bibitem{CUDA_C_Programming}
+{\sffamily\scshape John~Cheng, Max~Grossman, T.~M.}
+\newblock {\bfseries Professional CUDA C Programming}.
+\newblock John Wiley and Sons, Inc, Indianapois, IN, 2014.
+
+\bibitem{trees}
+{\sffamily\scshape Khan.}
+\newblock {\bfseries
+  \href{https://www.khanacademy.org/science/biology/her/tree-of-life/a/phylogenetic-trees}
+  {Phylogenetic trees}}.
+\newblock preprint, 2014.
+
+\bibitem{CUDA_Model_Programming}
+{\sffamily\scshape NVIDEA.}
+\newblock {\bfseries NVIDIA CUDA Programming Model Overview}.
+\newblock NVIDEA Corporation, Indianapois, IN, 2013.
+
+\bibitem{i_moran}
+{\sffamily\scshape Paradis, E.}
+\newblock {\bfseries {Moran - Autocorrelation Coefficient in Comparative
+  Methods}}.
+\newblock {\itshape Biology Journal}, 1:2--6, 2012.
+
+\bibitem{Adv_Comp_Arq}
+{\sffamily\scshape Rewini, H.}
+\newblock {\bfseries Advanced Computer Architecture and Parallel Processing}.
+\newblock Wiley, New Jersey, NY, 2005.
+
+\bibitem{CUDA_Example}
+{\sffamily\scshape Sanders, J.}
+\newblock {\bfseries CUDA By Example - An Introduction to General-Porposo GPU
+  Programming}.
+\newblock Jack Dongarra, Ann Arbor, Michigan, 2010.
+
+\bibitem{estimating_binary}
+{\sffamily\scshape Wayne.}
+\newblock {\bfseries {Estimating a Binary Character's Effect on Speciation and
+  Extinction}}.
+\newblock {\itshape Systematic Biology}, 1:2--9, 2007.
+
+\bibitem{analy_SIMD_MIMD}
+{\sffamily\scshape {\href{www.ijarcsse.com}{Kaur}}, M.~K.}
+\newblock {\bfseries
+  \href{https://www.ijarcsse.com/docs/papers/Volume_3/9_September2013/V3I9-0332.pdf}
+  {A Comparative Analysis of SIMD and MIMD Architectures}}.
+\newblock {\itshape International Journal of Advanced Research in Computer
+  Science and Software Engineering}, 1:1--8, 2013.
+
+\end{thebibliography}

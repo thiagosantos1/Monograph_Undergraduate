@@ -1,0 +1,78 @@
+
+\chapter{Filogenia}
+\label{cap:filogenia}
+
+Desde os tempos de Darwin, métodos de comparação tem sido a principal ferramenta utilizada para o entendimento de padrões evolutivos e processos baseados na diversidade atual. Nesse processo, temos que a origem da similaridade é a ancestralidade comum, criando então uma dependência entre espécies, não sendo possível analisar estatisticamente uma espécie de forma isolada.\cite{disser_PAM}
+
+Geralmente, ecologistas preferem depender de uma única árvore filogenética para estudar os processos evolutivos que afetam os padrões macroecológicos. Todavia, na maioria das vezes, estudos ecológicos e biogeográficos envolvem centenas ou milhares de espécies e árvores, representando linhagens recentes e antigas. Sendo assim, dado um conjunto de espécies e informações que caracterizam diferentes grupos de organismos, por exemplo o formato e tamanho das asas de aves, como podemos retirar informações sobre a relação entre as espécies as quais estas características foram observadas? É de extrema raridade que as relações entre espécies e ancestrais sejam observáveis diretamente.\cite{Phylogenetic_Uncertainty}
+
+\section{Método de Comparação Filogenético}
+\label{metodo}
+Os métodos comparativos filogenéticos usam informações sobre as relações históricas de linhagens, chamadas filogenias ou árvore filogenética, para testar hipóteses evolutivas, padrões de variação e outras análises entre espécies. O método comparativo tem uma vasta história na biologia evolutiva. Em "A Origem das Espécies", Charles Darwin usou diferenças e semelhanças entre as espécies como uma grande fonte de evidência para provar sua teoria; Essa realização inspirou o desenvolvimento de métodos de comparação explícitos.\cite{phylogenies_comparative} Os biólogos usam esse método para aplicar informações filogenéticas para estudar como a seleção natural tem no decorrer dos anos, moldado características das espécies, bem como suas variações. Além disso, o uso da filogenia pode ser importante para a reconstrução e compreensão os fatos da história.
+
+Métodos comparativos filogenéticos geralmente são divididos em dois tipos principais de abordagens: 
+\begin{enumerate}
+   \item Inferem a história evolutiva de algum caráter( característica ou genética) através de uma filogenia.
+   \item Inferem o processo de ramificação evolutiva em si.
+ \end{enumerate}
+ 
+Normalmente, a árvore que é usada em conjunto com o processo de comparação foi estimada independentemente, de tal forma que tanto as relações entre linhagens quanto o comprimento dos ramos que as separam são assumidas como sendo conhecidas.\cite{estimating_binary}
+ 
+\section{Dados Utilizados}
+Na Biologia, é comum dividir os organismos de interesse em partes diferentes, sejam estas partes, comportamentos, aspectos, características, funções, entre outros. Todavia, tais partes isoladas não necessariamente apresentam significado biológico. Dessa forma, tem-se que os dados comparativos podem ser obtidos em estudos da Biologia, seja na Ecologia, Fisiologia, Genética ou qualquer outra. Tais dados são então utilizados para observações em um dado nível da hierarquia biológica. 
+
+	Para se utilizar o método comparativo, como fizemos em nossa aplicação, é necessário se ter uma árvore filogenética, ou árvore da vida. É necessário também as espécies com filogenia incerta(PUT) junto com seu devido MDCC e também um vetor de características das espécies, o qual é usado para o cálculo do índice de I de Moran. Tais requerimentos são imprescindíveis para a realização do método.
+
+\subsection{Árvore Filogenética}
+Uma árvore evolutiva é um diagrama de ramificação, ou simplesmente árvore, como é chamado na ciência da computação, que mostra as relações evolucionárias inferidas entre diversas espécies biológicas, baseado em semelhanças e diferenças em suas dadas características, físicas ou genéticas. As árvores filogenéticas são de suma importância para o campo da filogenética e para o entendimento da evolução como um todo.\cite{comparative_methods}
+
+Em uma árvore filogenética, cada nó com descendentes representa o antepassado comum mais recente dos descendentes, e os comprimentos de ramo em algumas árvores podem ser interpretados como estimativas de tempo entre o surgimento de cada espécie.  Os ramos das árvores que se bifurcam representam então a existência da evolução que transformou aquela espécie em um ponto de cladogênese. A figura 1.1 ilustra graficamente a estrutura de uma árvore filogenética. Cada nó é chamado uma unidade taxonômica. Nódulos internos são geralmente chamados de unidades taxonômicas hipotéticas, pois não podem ser observados diretamente. As árvores são úteis em campos da biologia como bioinformática, sistemática e métodos comparativos filogenéticos.\cite{trees}
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.9]{./fig/arvore_filogenetica}
+	\caption{Árvore filogenética \cite{dissert_elias}}
+	\label{fig:Árvore filogenética}
+\end{figure}
+
+\subsection{Formato Newick}
+
+Na ciência da computação, uma árvore é um tipo particular de grafo, ou seja, uma estrutura que contém nós conectados por arestas. Para que as árvores filogenéticas possam então ser usadas em sistemas computacionais é necessário criar uma alternativa a apresentação gráfica. No ramo da bioinformática, um formato de representação bem usado é o padrão Newick. Tal padrão é bastante utilizado por programadores, por conta da sua simplicidade e portabilidade. Todas as informações, como espécies, descendentes, comprimento de ramos e identificação do nó raiz são facilmente identificados e obtidos, bastando apenas fazer uma varredura na estrutura de dados.
+
+	A árvore termina sempre com um ponto-e-vírgula. Os nós interiores são representados por um par de parênteses. Entre eles, estão os nós que são imediatamente descendentes desse nó, separados por vírgulas. Comprimentos de ramificação podem ser incorporados em uma árvore, colocando um número real, com ou sem ponto decimal, após um nó e precedido por dois-pontos. Isso representa o comprimento do ramo imediatamente abaixo desse nó. A figura 2.2 representa graficamente as formas de representação de uma árvore filogenética gráfica e textual.\cite{newick_format}
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.65]{./fig/arvore}
+	\caption{Árvore filogenética e suas formas de representação \cite{dissert_elias}}
+	\label{fig:Representações árvore filogenética}
+\end{figure}
+	
+\section{Coeficiente I de Moran}
+O I de Moran é um coeficiente de correlação, que mede a autocorrelação espacial do conjunto de dados. Nesse caso, é possível analisar os padrões filogenéticos através desse índice. Em outras palavras, é possível medir como uma espécie é semelhante às outras que a rodeiam. O índice de Moran, dado na equação 1, é utilizado para auxiliar na compreensão dessa semelhança. A autocorrelação espacial é multidirecional e multidimensional, tornando-a útil para encontrar padrões em conjuntos de dados complicados. É semelhante aos coeficientes de correlação, tem um valor de -1 a 1. No entanto, enquanto outros coeficientes medem correlação perfeita com nenhuma correlação, Moran é ligeiramente diferente (devido aos cálculos espaciais mais complexos):\cite{i_moran}
+
+\begin{itemize}
+   \item -1 é o agrupamento perfeito de valores diferentes (você também pode pensar nisso como dispersão perfeita).
+   \item  0 não é autocorrelação (aleatoriedade perfeita.)
+   \item +1 indica agrupamento perfeito de valores semelhantes (é o oposto da dispersão).
+ \end{itemize}
+
+Formula: 
+\begin{enumerate}
+	\item $I = (\frac{n}{S}) 
+	           \frac{(\sum_{i=1}^n ( \sum_{j=1}^n (Wij( yi - ylinha) * ( yi - ylinha) )  )  )}
+	           {\sum_{i=1}^n(yi - ylinha)^2} $
+	 
+				 
+\end{enumerate}
+
+Onde:
+
+\begin{itemize}
+   \item n: é o número de espécies
+   \item y: representa a variável analisada
+   \item ylinha: é a média de y
+   \item Wij: é o valor 1 ou zero, que representa a conectividade.
+   \item S: é a soma dos elementos de conectividade
+ \end{itemize}
+ 
+ 
+Os cálculos do I de moran Moran são baseados em uma matriz ponderada(matriz de distância), com unidades i e j. As similaridades entre unidades são calculadas como o produto das diferenças entre yi e yj com a média geral. 

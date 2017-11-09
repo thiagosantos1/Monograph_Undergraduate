@@ -1,0 +1,73 @@
+%
+% ********** P·gina de Rosto
+%
+
+% titlepage gera p·ginas sem numeraÁ„o
+\begin{titlepage}
+
+\begin{center}
+
+\small
+
+% O comando @{} no ambiente tabular x È para criar um novo delimitador
+% entre colunas que n„o a barra vertical | que È normalmente utilizada.
+% O delimitador desejado vai entre as chaves. No exemplo, n„o h· nada,
+% de modo que o delimitador È vazio. Este recurso est· sendo usado para
+% eliminar o espaÁo que geralmente existe entre as colunas
+\begin{tabularx}{\linewidth}{ c X }
+% A figura foi colocada dentro de um parbox para que fique verticalmente
+% centralizada em relaÁ„o ao resto da linha
+\parbox[c]{3cm}{\includegraphics[width=\linewidth]{IFRN}} &
+\begin{center}
+\textsf{\textsc{Instituto Federal de Educação Ciência\\
+ e Tecnologia do Rio Grande do Norte \\
+Diretoria de Gestão de Tecnologia da Informação \\
+Curso Superior de Tecnologia em Redes de Computadores
+}} 
+\end{center}
+
+\end{tabularx}
+
+
+% O vfill È um espaÁo vertical que assume a m·xima dimens„o possÌvel
+% Os vfill's desta p·gina foram utilizados para que o texto ocupe
+% toda a folha
+\vfill
+
+\LARGE
+
+\textbf{Aqui é o título de seu trabalho}
+
+\vfill
+
+\Large
+
+\textbf{Fulano do Anzóis Pereira}
+
+\vfill
+
+\normalsize
+
+Prof. Dr. Rodrigo Siqueira Martins
+
+\vfill
+
+\hfill
+\parbox{0.5\linewidth}{\textbf{%
+% Descomente as opÁıes que se aplicam ao seu caso
+%Proposta de Tema para QualificaÁ„o}
+%DissertaÁ„o de Mestrado}
+Relatório} apresentado à Disciplina de Administração de Sistemas Proprietários
+como parte dos requisitos para obtenção da nota da 1a unidade}
+
+
+\vfill
+
+\large
+
+%Data
+Natal, RN, junho de 2014
+
+\end{center}
+
+\end{titlepage}

@@ -1,0 +1,130 @@
+% Exemplo de dissertação do INF-UFG com texto em portugues formatado com LaTeX
+\documentclass[relatorio]{inf-ufg}
+% Opções da classe inf-ufg (ao usar mais de uma, separe por vírgulas)
+%   [tese]         -> Tese de doutorado.
+%   [dissertacao]  -> Dissertação de mestrado (padrão).
+%   [monografia]   -> Monografia de especialização.
+%   [relatorio]    -> Relatório final de graduação.
+%   [abnt]         -> Usa o estilo "abnt-alf" de citação bibliográfica.
+%   [nocolorlinks] -> Os links de navegação no texto ficam na cor preta.
+%                     Use esta opção para gerar o arquivo para impressão
+%                     da versão final do seu texto!!!
+
+
+%\usepackage{algpseudocode,algorithm}
+
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+%\usepackage{algorithmic}
+
+% Declaracoes
+%\algrenewcommand\algorithmicend{\textbf{fim}}
+%\algrenewcommand\algorithmicdo{\textbf{faça}}
+%\algrenewcommand\algorithmicwhile{\textbf{enquanto}}
+%\algrenewcommand\algorithmicfor{\textbf{para}}
+%\algrenewcommand\algorithmicif{\textbf{se}}
+%\algrenewcommand\algorithmicthen{\textbf{então}}
+%\algrenewcommand\algorithmicelse{\textbf{senão}}
+%\algrenewcommand\algorithmicreturn{\textbf{devolve}}
+%\algrenewcommand\algorithmicfunction{\textbf{função}}
+
+%\algrenewtext{EndWhile}{\algorithmicend\ \algorithmicwhile}
+%\algrenewtext{EndFor}{\algorithmicend\ \algorithmicfor}
+%\algrenewtext{EndIf}{\algorithmicend\ \algorithmicif}
+%\algrenewtext{EndFunction}{\algorithmicend\ \algorithmicfunction}
+
+%\algnewcommand\algorithmicto{\textbf{até}}
+%\algrenewtext{For}[3]%
+%{\algorithmicfor\ #1 $\gets$ #2 \algorithmicto\ #3 \algorithmicdo}
+
+% Novos comandos
+\newcommand{\mei}{\leqslant} 		% menor ou igual
+
+
+%----------------------------------------------------- INICIO DO DOCUMENTO %
+\begin{document}
+
+%------------------------------------------ AUTOR, TÍTULO E DATA DE DEFESA %
+\autor{ Thiago Pereira Maia dos Santos} % (José da Silva)
+\autorR{ Santos, Thiago} % (da Silva, José)
+
+\titulo{Acelerando operações filogenéticas usando programação paralela}
+
+\cidade{Goiânia} % Nome da cidade em foi desenvolvido o trabalho
+\dia{10} %
+\mes{07} % Data da apresentação/defesa do trabalho
+\ano{2017} % Formato numérico: \dia{01}, \mes{01} e \ano{2009}
+
+%-------------------------------------------------------------- ORIENTADOR %
+\orientador{Wellington Santos Martins}
+\orientadorR{Martins, Wellington}
+% Use os comandos a seguir se for Orientadora e nao Orientador.
+%\orientadora{\textless Nome da Orientadora\textgreater}
+%\orientadoraR{\textless Nome Reverso da Orientadora\textgreater}
+
+% Use os comandos a seguir se for Co-orientadora e nao Coorientador.
+%\coorientadora{\textless Nome da Co-orientadora\textgreater}
+%\coorientadoraR{\textless Nome Reverso da Co-orientadora\textgreater}
+
+%-------------------------------------------------- INSTITUIÇÃO E PROGRAMA %
+\universidade{Universidade Federal de Goiás} % {Universidade Federal de Goiás}
+\uni{UFG}         % UFG
+\unidade{Instituto de Informática} %Instituto de Informática
+
+
+%-------------------------------------------------- ELEMENTOS PRÉ-TEXTUAIS %
+\capa    % Gera o modelo da capa externa do trabalho
+\publica % Gera a autorização para publicação em formato eletrônico
+\rosto   % Primeira folha interna do trabalho
+
+\input{./pre/pre_dedicatoria}
+\input{./pre/pre_agradecimentos}
+\input{./pre/pre_epigrafe}
+\input{./pre/pre_resumo}
+\input{./pre/pre_abstract}
+
+
+
+\tabelas[figtabalgcod]
+%Opções:
+%nada [] -> Gera apenas o sumário
+%fig     -> Gera o sumário e a lista de figuras
+%tab     -> Sumário e lista de tabelas
+%alg     -> Sumário e lista de algoritmos
+%cod     -> Sumário e lista de códigos de programas
+%
+% Pode-se usar qualquer combinação dessas opções.
+% Por exemplo:
+%  figtab       -> Sumário e listas de figuras e tabelas
+%  figtabcod    -> Sumário e listas de figuras, tabelas e
+%                  códigos de programas
+%  figtabalg    -> Sumário e listas de figuras, tabelas e algoritmos
+%  figtabalgcod -> Sumário e listas de figuras, tabelas, algoritmos e
+%                  códigos de programas
+
+%--------------------------------------------------------------- CAPÍTULOS %
+\input{./tex/cap_introduction}
+\input{./tex/cap_I}
+\input{./tex/cap_II}
+\input{./tex/cap_III}
+\input{./tex/cap_IV}
+\input{./tex/cap_V}
+
+
+%------------------------------------------------------------ BIBLIOGRAFIA %
+\cleardoublepage
+\nocite{*} %%% Retire esta linha para gerar a bibliografia com apenas as
+           %%% referências usadas no seu texto!
+\arial
+\bibliographystyle{plain} 
+\bibliography{./bib/tese_ref.bib} %%% Nomes dos seus arquivos .bib
+\label{ref-bib}
+
+%--------------------------------------------------------------- APÊNDICES %
+\apendices
+
+%\input{./pos/apend_I}
+%\input{./pos/apend_II}
+
+\end{document}
+

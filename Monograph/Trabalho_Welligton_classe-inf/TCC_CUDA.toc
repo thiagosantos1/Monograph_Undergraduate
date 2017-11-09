@@ -1,0 +1,39 @@
+\select@language {brazil}
+\contentsline {chapter}{Lista de Figuras}{9}{Doc-Start}
+\contentsline {chapter}{Lista de Tabelas}{10}{Doc-Start}
+\contentsline {chapter}{Lista de Algoritmos}{11}{Doc-Start}
+\contentsline {chapter}{Lista de C\'{o}digos de Programas}{12}{section*.1}
+\contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{13}{chapter.2}
+\contentsline {chapter}{\numberline {2}Filogenia}{15}{chapter.3}
+\contentsline {section}{\numberline {2.1}M\'etodo de Compara\c c\~ao Filogen\'etico}{15}{section.4}
+\contentsline {section}{\numberline {2.2}Dados Utilizados}{16}{section.7}
+\contentsline {subsection}{\numberline {2.2.1}\'Arvore Filogen\'etica}{16}{subsection.8}
+\contentsline {subsection}{\numberline {2.2.2}Formato Newick}{17}{subsection.10}
+\contentsline {section}{\numberline {2.3}Coeficiente I de Moran}{17}{section.12}
+\contentsline {chapter}{\numberline {3}Computa\c c\~ao Paralela}{20}{chapter.14}
+\contentsline {section}{\numberline {3.1}Vis\~ao Geral}{20}{section.15}
+\contentsline {subsection}{\numberline {3.1.1}Paralelismo}{21}{subsection.16}
+\contentsline {subsection}{\numberline {3.1.2}Taxonomia de Flynn}{23}{subsection.18}
+\contentsline {subsection}{\numberline {3.1.3}Arquiteturas de computa\c c\~ao paralela}{24}{subsection.23}
+\contentsline {subsection}{\numberline {3.1.4}Arquitetura heterog\^enea}{28}{subsection.28}
+\contentsline {subsection}{\numberline {3.1.5}CPU x GPU}{29}{subsection.29}
+\contentsline {subsection}{\numberline {3.1.6}M\'etricas de desempenho}{29}{subsection.30}
+\contentsline {subsubsection}{Efici\^encia}{30}{section*.31}
+\contentsline {subsubsection}{Acelera\c c\~ao(speedup)}{30}{section*.32}
+\contentsline {subsubsection}{Custo}{31}{section*.33}
+\contentsline {subsubsection}{Granularidade}{31}{section*.34}
+\contentsline {subsubsection}{Escalabilidade}{31}{section*.35}
+\contentsline {section}{\numberline {3.2}Ambientes de programa\c c\~ao}{31}{section.36}
+\contentsline {subsection}{\numberline {3.2.1}CUDA}{32}{subsection.37}
+\contentsline {subsection}{\numberline {3.2.2}Estrutura de um programa em CUDA}{33}{subsection.38}
+\contentsline {subsection}{\numberline {3.2.3}Desafios Programa\c c\~ao em CUDA C}{33}{subsection.39}
+\contentsline {chapter}{\numberline {4}Proposta de Implementa\c c\~ao}{35}{chapter.40}
+\contentsline {section}{\numberline {4.1}Pr\'e-processamento}{36}{section.41}
+\contentsline {section}{\numberline {4.2}Inser\c c\~ao de esp\'ecies}{38}{section.44}
+\contentsline {section}{\numberline {4.3}C\'alculo de matriz de dist\^ancia}{38}{section.45}
+\contentsline {section}{\numberline {4.4}C\'alculo de I de Moran}{38}{section.46}
+\contentsline {chapter}{\numberline {5}Resultados}{43}{chapter.54}
+\contentsline {section}{\numberline {5.1}C\'alculo de I de Moran}{43}{section.55}
+\contentsline {chapter}{\numberline {6}Conclus\~ao}{47}{chapter.64}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{49}{chapter.64}
+\contentsfinish 
